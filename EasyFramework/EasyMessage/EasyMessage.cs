@@ -5,7 +5,6 @@
 // E-mail : www.shiqi.com@gmail.com
 //------------------------------------------------------------
 
-using System;
 using EasyFramework.EasyCommon;
 using EasyFramework.EasyReference;
 
@@ -22,11 +21,6 @@ namespace EasyFramework.EasyMessage
         public EasyFrameworkAction MessageList { get; set; }
 
         /// <summary>
-        /// 获取列表信息。
-        /// </summary>
-        public Delegate MessageListInfo => MessageList;
-
-        /// <summary>
         /// 初始化消息的新实例。
         /// </summary>
         public EasyMessage()
@@ -40,9 +34,9 @@ namespace EasyFramework.EasyMessage
         /// <returns>创建的消息。</returns>
         public static EasyMessage Create(EasyFrameworkAction message)
         {
-            EasyMessage tempEasyMessage = EasyReferencePool.AcquireReference<EasyMessage>();
-            tempEasyMessage.MessageList = message;
-            return tempEasyMessage;
+            EasyMessage msg = EasyReferencePool.AcquireReference<EasyMessage>();
+            msg.MessageList = message;
+            return msg;
         }
 
         /// <summary>
@@ -66,11 +60,6 @@ namespace EasyFramework.EasyMessage
         public EasyFrameworkAction<TMessage> MessageList { get; set; }
 
         /// <summary>
-        /// 获取列表信息。
-        /// </summary>
-        public Delegate MessageListInfo => MessageList;
-
-        /// <summary>
         /// 初始化消息的新实例。
         /// </summary>
         public EasyMessage()
@@ -85,9 +74,9 @@ namespace EasyFramework.EasyMessage
         /// <returns>创建的消息。</returns>
         public static EasyMessage<TMessage> Create(EasyFrameworkAction<TMessage> message)
         {
-            EasyMessage<TMessage> tempEasyMessage = EasyReferencePool.AcquireReference<EasyMessage<TMessage>>();
-            tempEasyMessage.MessageList = message;
-            return tempEasyMessage;
+            EasyMessage<TMessage> msg = EasyReferencePool.AcquireReference<EasyMessage<TMessage>>();
+            msg.MessageList = message;
+            return msg;
         }
 
         /// <summary>
@@ -112,11 +101,6 @@ namespace EasyFramework.EasyMessage
         public EasyFrameworkAction<TMessage1, TMessage2> MessageList { get; set; }
 
         /// <summary>
-        /// 获取列表信息。
-        /// </summary>
-        public Delegate MessageListInfo => MessageList;
-
-        /// <summary>
         /// 初始化消息的新实例。
         /// </summary>
         public EasyMessage()
@@ -131,9 +115,9 @@ namespace EasyFramework.EasyMessage
         /// <returns>创建的消息。</returns>
         public static EasyMessage<TMessage1, TMessage2> Create(EasyFrameworkAction<TMessage1, TMessage2> message)
         {
-            EasyMessage<TMessage1, TMessage2> tempEasyMessage = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2>>();
-            tempEasyMessage.MessageList = message;
-            return tempEasyMessage;
+            EasyMessage<TMessage1, TMessage2> msg = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2>>();
+            msg.MessageList = message;
+            return msg;
         }
 
         /// <summary>
@@ -159,11 +143,6 @@ namespace EasyFramework.EasyMessage
         public EasyFrameworkAction<TMessage1, TMessage2, TMessage3> MessageList { get; set; }
 
         /// <summary>
-        /// 获取列表信息。
-        /// </summary>
-        public Delegate MessageListInfo => MessageList;
-
-        /// <summary>
         /// 初始化消息的新实例。
         /// </summary>
         public EasyMessage()
@@ -178,9 +157,9 @@ namespace EasyFramework.EasyMessage
         /// <returns>创建的消息。</returns>
         public static EasyMessage<TMessage1, TMessage2, TMessage3> Create(EasyFrameworkAction<TMessage1, TMessage2, TMessage3> message)
         {
-            EasyMessage<TMessage1, TMessage2, TMessage3> tempEasyMessage = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2, TMessage3>>();
-            tempEasyMessage.MessageList = message;
-            return tempEasyMessage;
+            EasyMessage<TMessage1, TMessage2, TMessage3> msg = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2, TMessage3>>();
+            msg.MessageList = message;
+            return msg;
         }
 
         /// <summary>
@@ -207,11 +186,6 @@ namespace EasyFramework.EasyMessage
         public EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4> MessageList { get; set; }
 
         /// <summary>
-        /// 获取列表信息。
-        /// </summary>
-        public Delegate MessageListInfo => MessageList;
-
-        /// <summary>
         /// 初始化消息的新实例。
         /// </summary>
         public EasyMessage()
@@ -226,9 +200,9 @@ namespace EasyFramework.EasyMessage
         /// <returns>创建的消息。</returns>
         public static EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4> Create(EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4> message)
         {
-            EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4> tempEasyMessage = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4>>();
-            tempEasyMessage.MessageList = message;
-            return tempEasyMessage;
+            EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4> msg = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4>>();
+            msg.MessageList = message;
+            return msg;
         }
 
         /// <summary>
@@ -256,11 +230,6 @@ namespace EasyFramework.EasyMessage
         public EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5> MessageList { get; set; }
 
         /// <summary>
-        /// 获取列表信息。
-        /// </summary>
-        public Delegate MessageListInfo => MessageList;
-
-        /// <summary>
         /// 初始化消息的新实例。
         /// </summary>
         public EasyMessage()
@@ -275,9 +244,9 @@ namespace EasyFramework.EasyMessage
         /// <returns>创建的消息。</returns>
         public static EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5> Create(EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5> message)
         {
-            EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5> tempEasyMessage = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5>>();
-            tempEasyMessage.MessageList = message;
-            return tempEasyMessage;
+            EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5> msg = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5>>();
+            msg.MessageList = message;
+            return msg;
         }
 
         /// <summary>
@@ -306,11 +275,6 @@ namespace EasyFramework.EasyMessage
         public EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6> MessageList { get; set; }
 
         /// <summary>
-        /// 获取列表信息。
-        /// </summary>
-        public Delegate MessageListInfo => MessageList;
-
-        /// <summary>
         /// 初始化消息的新实例。
         /// </summary>
         public EasyMessage()
@@ -325,9 +289,9 @@ namespace EasyFramework.EasyMessage
         /// <returns>创建的消息。</returns>
         public static EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6> Create(EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6> message)
         {
-            EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6> tempEasyMessage = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6>>();
-            tempEasyMessage.MessageList = message;
-            return tempEasyMessage;
+            EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6> msg = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6>>();
+            msg.MessageList = message;
+            return msg;
         }
 
         /// <summary>
@@ -357,11 +321,6 @@ namespace EasyFramework.EasyMessage
         public EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7> MessageList { get; set; }
 
         /// <summary>
-        /// 获取列表信息。
-        /// </summary>
-        public Delegate MessageListInfo => MessageList;
-
-        /// <summary>
         /// 初始化消息的新实例。
         /// </summary>
         public EasyMessage()
@@ -376,9 +335,9 @@ namespace EasyFramework.EasyMessage
         /// <returns>创建的消息。</returns>
         public static EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7> Create(EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7> message)
         {
-            EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7> tempEasyMessage = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7>>();
-            tempEasyMessage.MessageList = message;
-            return tempEasyMessage;
+            EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7> msg = EasyReferencePool.AcquireReference<EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7>>();
+            msg.MessageList = message;
+            return msg;
         }
 
         /// <summary>

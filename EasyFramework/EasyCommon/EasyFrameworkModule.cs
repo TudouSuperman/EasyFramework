@@ -5,8 +5,6 @@
 // E-mail : www.shiqi.com@gmail.com
 //------------------------------------------------------------
 
-using System;
-
 namespace EasyFramework.EasyCommon
 {
     /// <summary>

@@ -18,7 +18,7 @@ namespace EasyFramework.EasyCommon
         EasyEventModule,
         EasyMessageModule,
         EasyProcedureModule,
-        EasyReferenceModule,
         EasyStateMachineModule,
+        EasyReferenceModule,
     }
 }

@@ -5,18 +5,12 @@
 // E-mail : www.shiqi.com@gmail.com
 //------------------------------------------------------------
 
-using System;
-
 namespace EasyFramework.EasyMessage
 {
     /// <summary>
     /// 消息接口。
     /// </summary>
-    public interface IEasyMessage
+    internal interface IEasyMessage
     {
-        /// <summary>
-        /// 获取消息列表信息。
-        /// </summary>
-        Delegate MessageListInfo { get; }
     }
 }
