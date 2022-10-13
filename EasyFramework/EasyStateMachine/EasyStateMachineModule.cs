@@ -23,7 +23,7 @@ namespace EasyFramework.EasyStateMachine
         /// <summary>
         /// 引用模块优先级。
         /// </summary>
-        protected internal override Int32 Priority => 2;
+        public override EasyModulePriority Priority => EasyModulePriority.EasyStateMachineModule;
 
         /// <summary>
         /// 初始化状态机模块的新实例。
@@ -39,7 +39,7 @@ namespace EasyFramework.EasyStateMachine
         /// 状态机模块轮询。
         /// </summary>
         /// <param name="logicTime">逻辑时间。</param>
-        public Void EasyModuleUpdate(Single logicTime)
+        public void EasyModuleUpdate(Single logicTime)
         {
             m_TempStateMachineModules.Clear();
 
@@ -76,7 +76,7 @@ namespace EasyFramework.EasyStateMachine
         /// <summary>
         /// 状态机模块关闭。
         /// </summary>
-        protected internal override Void EasyModuleShutdown()
+        protected internal override void EasyModuleShutdown()
         {
             foreach (KeyValuePair<Int32, EasyStateMachineBase> stateMachineModule in m_FiniteStateMachineModules)
             {

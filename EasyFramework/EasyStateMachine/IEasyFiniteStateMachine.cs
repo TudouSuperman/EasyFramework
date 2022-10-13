@@ -54,7 +54,7 @@ namespace EasyFramework.EasyStateMachine
         /// 启动有限状态机。
         /// </summary>
         /// <typeparam name="TFiniteStateMachineOwnerState">要启动的有限状态机持有者状态类型。</typeparam>
-        Void StartFiniteStateMachine<TFiniteStateMachineOwnerState>() where TFiniteStateMachineOwnerState : EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>;
+        void StartFiniteStateMachine<TFiniteStateMachineOwnerState>() where TFiniteStateMachineOwnerState : EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>;
 
         /// <summary>
         /// 检查是否存在有限状态机状态。
@@ -80,11 +80,11 @@ namespace EasyFramework.EasyStateMachine
         /// 切换有限状态机状态。
         /// </summary>
         /// <typeparam name="TFiniteStateMachineOwnerState">要切换的有限状态机持有者状态类型。</typeparam>
-        Void ChangeFiniteStateMachineState<TFiniteStateMachineOwnerState>() where TFiniteStateMachineOwnerState : EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>;
+        void ChangeFiniteStateMachineState<TFiniteStateMachineOwnerState>() where TFiniteStateMachineOwnerState : EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>;
 
         /// <summary>
         /// 关闭有限状态机。
         /// </summary>
-        Void CloseFiniteStateMachine();
+        void CloseFiniteStateMachine();
     }
 }

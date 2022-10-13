@@ -74,7 +74,7 @@ namespace EasyFramework.EasyReference
         /// 释放引用。
         /// </summary>
         /// <param name="reference">引用。</param>
-        public Void ReleaseReference(IEasyReference reference)
+        public void ReleaseReference(IEasyReference reference)
         {
             reference.ClearReference();
             m_References.Enqueue(reference);
@@ -84,7 +84,7 @@ namespace EasyFramework.EasyReference
         /// 创建并缓存多个引用。
         /// </summary>
         /// <param name="count">数量。</param>
-        public Void AddReference(Int32 count)
+        public void AddReference(Int32 count)
         {
             while (count-- > 0)
             {
@@ -96,7 +96,7 @@ namespace EasyFramework.EasyReference
         /// 移除多个引用。
         /// </summary>
         /// <param name="count">数量。</param>
-        public Void RemoveReference(Int32 count)
+        public void RemoveReference(Int32 count)
         {
             if (m_References.Count <= count)
             {
@@ -114,7 +114,7 @@ namespace EasyFramework.EasyReference
         /// <summary>
         /// 移除所有引用。
         /// </summary>
-        public Void RemoveReferences()
+        public void RemoveReferences()
         {
             m_References.Clear();
         }

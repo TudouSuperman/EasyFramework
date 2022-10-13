@@ -61,7 +61,7 @@ namespace EasyFramework.EasyReference
         /// 释放指定类型引用。
         /// </summary>
         /// <param name="reference">引用。</param>
-        public static Void ReleaseReference(IEasyReference reference)
+        public static void ReleaseReference(IEasyReference reference)
         {
             InternalGetReferenceCache(reference.GetType()).ReleaseReference(reference);
         }
@@ -69,7 +69,7 @@ namespace EasyFramework.EasyReference
         /// <summary>
         /// 清理所有引用。
         /// </summary>
-        public static Void ClearReferences()
+        public static void ClearReferences()
         {
             foreach (KeyValuePair<Type, EasyReferencePoolCache> itemEasyReferencePoolCache in References)
             {

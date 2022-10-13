@@ -62,7 +62,7 @@ namespace EasyFramework.EasyEvent
         /// </summary>
         /// <param name="id">要订阅的事件编号。</param>
         /// <param name="eventHandler">要订阅的事件处理函数。</param>
-        public Void SubscribeEvent(Int32 id, EasyFrameworkEventHandler<EasyFrameworkEventArgs> eventHandler)
+        public void SubscribeEvent(Int32 id, EasyFrameworkEventHandler<EasyFrameworkEventArgs> eventHandler)
         {
             if (eventHandler == null)
             {
@@ -84,7 +84,7 @@ namespace EasyFramework.EasyEvent
         /// </summary>
         /// <param name="id">要取消订阅的事件编号。</param>
         /// <param name="eventHandler">要取消订阅的事件处理函数。</param>
-        public Void UnSubscribeEvent(Int32 id, EasyFrameworkEventHandler<EasyFrameworkEventArgs> eventHandler)
+        public void UnSubscribeEvent(Int32 id, EasyFrameworkEventHandler<EasyFrameworkEventArgs> eventHandler)
         {
             if (eventHandler == null)
             {
@@ -106,7 +106,7 @@ namespace EasyFramework.EasyEvent
         /// </summary>
         /// <param name="sender">事件发送者。</param>
         /// <param name="eventArgs">事件参数。</param>
-        public Void BroadcastEvent(Object sender, EasyFrameworkEventArgs eventArgs)
+        public void BroadcastEvent(Object sender, EasyFrameworkEventArgs eventArgs)
         {
             if (eventArgs == null)
             {
@@ -125,7 +125,7 @@ namespace EasyFramework.EasyEvent
         /// </summary>
         /// <param name="sender">事件发送者。</param>
         /// <param name="eventArgs">事件参数。</param>
-        public Void BroadcastEventNow(Object sender, EasyFrameworkEventArgs eventArgs)
+        public void BroadcastEventNow(Object sender, EasyFrameworkEventArgs eventArgs)
         {
             if (eventArgs == null)
             {
@@ -140,7 +140,7 @@ namespace EasyFramework.EasyEvent
         /// </summary>
         /// <param name="sender">事件发送者。</param>
         /// <param name="eventArgs">框架事件参数。</param>
-        private Void InternalHandleEvent(Object sender, EasyFrameworkEventArgs eventArgs)
+        private void InternalHandleEvent(Object sender, EasyFrameworkEventArgs eventArgs)
         {
             if (m_EventHandlers.TryGetValue(eventArgs.EventArgsId, out EasyFrameworkEventHandler<EasyFrameworkEventArgs> e))
             {

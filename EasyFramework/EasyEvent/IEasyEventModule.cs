@@ -40,27 +40,27 @@ namespace EasyFramework.EasyEvent
         /// </summary>
         /// <param name="id">要订阅的事件编号。</param>
         /// <param name="eventHandler">要订阅的事件处理函数。</param>
-        Void SubscribeEvent(Int32 id, EasyFrameworkEventHandler<EasyFrameworkEventArgs> eventHandler);
+        void SubscribeEvent(Int32 id, EasyFrameworkEventHandler<EasyFrameworkEventArgs> eventHandler);
 
         /// <summary>
         /// 取消订阅事件。
         /// </summary>
         /// <param name="id">要取消订阅的事件编号。</param>
         /// <param name="eventHandler">要取消订阅的事件处理函数。</param>
-        Void UnSubscribeEvent(Int32 id, EasyFrameworkEventHandler<EasyFrameworkEventArgs> eventHandler);
+        void UnSubscribeEvent(Int32 id, EasyFrameworkEventHandler<EasyFrameworkEventArgs> eventHandler);
 
         /// <summary>
         /// 广播事件 - 线程安全模式。
         /// </summary>
         /// <param name="sender">事件发送者。</param>
         /// <param name="eventArgs">事件参数。</param>
-        Void BroadcastEvent(Object sender, EasyFrameworkEventArgs eventArgs);
+        void BroadcastEvent(Object sender, EasyFrameworkEventArgs eventArgs);
 
         /// <summary>
         /// 广播事件 - 立即广播模式。
         /// </summary>
         /// <param name="sender">事件发送者。</param>
         /// <param name="eventArgs">事件参数。</param>
-        Void BroadcastEventNow(Object sender, EasyFrameworkEventArgs eventArgs);
+        void BroadcastEventNow(Object sender, EasyFrameworkEventArgs eventArgs);
     }
 }

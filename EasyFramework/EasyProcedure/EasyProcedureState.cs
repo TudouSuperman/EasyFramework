@@ -20,7 +20,7 @@ namespace EasyFramework.EasyProcedure
         /// 进入流程状态。
         /// </summary>
         /// <param name="procedure">流程持有者。</param>
-        protected internal override Void OnEnterState(ProcedureOwner procedure)
+        protected internal override void OnEnterState(ProcedureOwner procedure)
         {
         }
 
@@ -29,7 +29,7 @@ namespace EasyFramework.EasyProcedure
         /// </summary>
         /// <param name="procedure">流程持有者。</param>
         /// <param name="logicTime">逻辑时间。</param>
-        protected internal override Void OnUpdateState(ProcedureOwner procedure, Single logicTime)
+        protected internal override void OnUpdateState(ProcedureOwner procedure, Single logicTime)
         {
         }
 
@@ -37,7 +37,7 @@ namespace EasyFramework.EasyProcedure
         /// 离开流程状态。
         /// </summary>
         /// <param name="procedure">流程持有者。</param>
-        protected internal override Void OnLeaveState(ProcedureOwner procedure)
+        protected internal override void OnLeaveState(ProcedureOwner procedure)
         {
         }
     }

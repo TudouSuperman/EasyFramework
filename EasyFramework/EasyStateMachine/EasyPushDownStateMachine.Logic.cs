@@ -96,7 +96,7 @@ namespace EasyFramework.EasyStateMachine
         /// 启动下推状态机。
         /// </summary>
         /// <typeparam name="TEasyPushDownStateMachineOwnerState">要启动的下推状态机持有者状态类型。</typeparam>
-        public Void StartPushDownStateMachineState<TEasyPushDownStateMachineOwnerState>() where TEasyPushDownStateMachineOwnerState : EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>
+        public void StartPushDownStateMachineState<TEasyPushDownStateMachineOwnerState>() where TEasyPushDownStateMachineOwnerState : EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>
         {
             if (IsRunning)
             {
@@ -153,7 +153,7 @@ namespace EasyFramework.EasyStateMachine
         /// 下推下推状态机状态到栈区。
         /// </summary>
         /// <typeparam name="TEasyPushDownStateMachineOwnerState">要下推的下推状态机持有者状态类型。</typeparam>
-        public Void PushDownStateMachineState<TEasyPushDownStateMachineOwnerState>() where TEasyPushDownStateMachineOwnerState : EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>
+        public void PushDownStateMachineState<TEasyPushDownStateMachineOwnerState>() where TEasyPushDownStateMachineOwnerState : EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>
         {
             if (m_PushDownStateMachineCurrentState == null)
             {
@@ -190,7 +190,7 @@ namespace EasyFramework.EasyStateMachine
         /// <summary>
         /// 弹出下推状态机状态到临时位。
         /// </summary>
-        public Void PopUpStateMachineState()
+        public void PopUpStateMachineState()
         {
             if (m_PushDownStateMachineCurrentState == null)
             {
@@ -221,7 +221,7 @@ namespace EasyFramework.EasyStateMachine
         /// <summary>
         /// 关闭下推状态机。
         /// </summary>
-        public Void ClosePushDownStateMachine()
+        public void ClosePushDownStateMachine()
         {
             if (m_PushDownStateMachineCurrentState == null)
             {

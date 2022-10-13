@@ -79,7 +79,7 @@ namespace EasyFramework.EasyReference
         /// 释放指定类型引用。
         /// </summary>
         /// <param name="reference">引用。</param>
-        public Void ReleaseReference(IEasyReference reference)
+        public void ReleaseReference(IEasyReference reference)
         {
             InternalGetReferenceCache(reference.GetType()).ReleaseReference(reference);
         }
@@ -89,7 +89,7 @@ namespace EasyFramework.EasyReference
         /// </summary>
         /// <typeparam name="TEasyReference">引用类型。</typeparam>
         /// <param name="count">数量。</param>
-        public Void AddReference<TEasyReference>(Int32 count) where TEasyReference : IEasyReference
+        public void AddReference<TEasyReference>(Int32 count) where TEasyReference : IEasyReference
         {
             AddReference(typeof(TEasyReference), count);
         }
@@ -99,7 +99,7 @@ namespace EasyFramework.EasyReference
         /// </summary>
         /// <param name="referenceType">引用类型。</param>
         /// <param name="count">数量。</param>
-        public Void AddReference(Type referenceType, Int32 count)
+        public void AddReference(Type referenceType, Int32 count)
         {
             InternalGetReferenceCache(referenceType).AddReference(count);
         }
@@ -109,7 +109,7 @@ namespace EasyFramework.EasyReference
         /// </summary>
         /// <typeparam name="TEasyReference">引用类型。</typeparam>
         /// <param name="count">数量。</param>
-        public Void RemoveReference<TEasyReference>(Int32 count) where TEasyReference : IEasyReference
+        public void RemoveReference<TEasyReference>(Int32 count) where TEasyReference : IEasyReference
         {
             RemoveReference(typeof(TEasyReference), count);
         }
@@ -119,7 +119,7 @@ namespace EasyFramework.EasyReference
         /// </summary>
         /// <param name="referenceType">引用类型。</param>
         /// <param name="count">数量。</param>
-        public Void RemoveReference(Type referenceType, Int32 count)
+        public void RemoveReference(Type referenceType, Int32 count)
         {
             InternalGetReferenceCache(referenceType).RemoveReference(count);
         }
@@ -156,7 +156,7 @@ namespace EasyFramework.EasyReference
         /// 内部校验引用类型。
         /// </summary>
         /// <param name="referenceType">引用类型。</param>
-        private Void InternalCheckReferenceType(Type referenceType)
+        private void InternalCheckReferenceType(Type referenceType)
         {
             if (referenceType == null)
             {

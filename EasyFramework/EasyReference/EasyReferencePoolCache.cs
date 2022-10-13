@@ -61,7 +61,7 @@ namespace EasyFramework.EasyReference
         /// 释放引用。
         /// </summary>
         /// <param name="reference">要释放的引用。</param>
-        public Void ReleaseReference(IEasyReference reference)
+        public void ReleaseReference(IEasyReference reference)
         {
             reference.ClearReference();
             m_References.Enqueue(reference);
@@ -70,7 +70,7 @@ namespace EasyFramework.EasyReference
         /// <summary>
         /// 移除所有引用。
         /// </summary>
-        public Void RemoveReferences()
+        public void RemoveReferences()
         {
             m_References.Clear();
         }

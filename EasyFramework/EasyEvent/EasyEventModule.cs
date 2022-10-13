@@ -23,7 +23,7 @@ namespace EasyFramework.EasyEvent
         /// <summary>
         /// 事件模块优先级。
         /// </summary>
-        protected internal override Int32 Priority => 1;
+        public override EasyModulePriority Priority => EasyModulePriority.EasyEventModule;
 
         /// <summary>
         /// 初始化事件模块的新实例。
@@ -37,7 +37,7 @@ namespace EasyFramework.EasyEvent
         /// <summary>
         /// 事件模块关闭。
         /// </summary>
-        protected internal override Void EasyModuleShutdown()
+        protected internal override void EasyModuleShutdown()
         {
             lock (m_EventHandlers)
             {
@@ -50,7 +50,7 @@ namespace EasyFramework.EasyEvent
         /// 事件模块轮询。
         /// </summary>
         /// <param name="logicTime">逻辑时间。</param>
-        public Void EasyModuleUpdate(Single logicTime)
+        public void EasyModuleUpdate(Single logicTime)
         {
             if (m_EasyEventHandlers == null)
             {

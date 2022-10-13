@@ -22,7 +22,7 @@ namespace EasyFramework.EasyProcedure
         /// <summary>
         /// 流程模块优先级。
         /// </summary>
-        protected internal override Int32 Priority => 4;
+        public override EasyModulePriority Priority => EasyModulePriority.EasyProcedureModule;
 
         /// <summary>
         /// 初始化流程模块的新实例。
@@ -36,7 +36,7 @@ namespace EasyFramework.EasyProcedure
         /// <summary>
         /// 流程模块关闭。
         /// </summary>
-        protected internal override Void EasyModuleShutdown()
+        protected internal override void EasyModuleShutdown()
         {
             if (m_StateMachineModule == null)
             {

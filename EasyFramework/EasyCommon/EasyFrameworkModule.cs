@@ -17,11 +17,11 @@ namespace EasyFramework.EasyCommon
         /// <summary>
         /// Easy Framework 模块优先级。
         /// </summary>
-        protected internal virtual Int32 Priority => 0;
+        public virtual EasyModulePriority Priority => EasyModulePriority.Unknown;
 
         /// <summary>
         /// Easy Framework 模块关闭。
         /// </summary>
-        protected internal abstract Void EasyModuleShutdown();
+        protected internal abstract void EasyModuleShutdown();
     }
 }

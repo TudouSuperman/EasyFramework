@@ -28,11 +28,11 @@ namespace EasyFramework.EasyStateMachine
         /// 状态机轮询。
         /// </summary>
         /// <param name="logicTime">逻辑时间。</param>
-        protected internal abstract Void StateMachineUpdate(Single logicTime);
+        protected internal abstract void StateMachineUpdate(Single logicTime);
 
         /// <summary>
         /// 状态机关闭。
         /// </summary>
-        protected internal abstract Void StateMachineShutdown();
+        protected internal abstract void StateMachineShutdown();
     }
 }

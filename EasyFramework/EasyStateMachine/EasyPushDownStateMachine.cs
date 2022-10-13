@@ -39,7 +39,7 @@ namespace EasyFramework.EasyStateMachine
         /// 状态机模块轮询。
         /// </summary>
         /// <param name="logicTime">逻辑时间。</param>
-        protected internal override Void StateMachineUpdate(Single logicTime)
+        protected internal override void StateMachineUpdate(Single logicTime)
         {
             if (m_PushDownStateMachineCurrentState == null)
             {
@@ -52,7 +52,7 @@ namespace EasyFramework.EasyStateMachine
         /// <summary>
         /// 状态机模块关闭。
         /// </summary>
-        protected internal override Void StateMachineShutdown()
+        protected internal override void StateMachineShutdown()
         {
             EasyReferencePool.ReleaseReference(this);
         }
@@ -60,7 +60,7 @@ namespace EasyFramework.EasyStateMachine
         /// <summary>
         /// 清理引用。
         /// </summary>
-        public Void ClearReference()
+        public void ClearReference()
         {
             m_PushDownStateMachineStack.Clear();
 

@@ -28,7 +28,7 @@ namespace EasyFramework.EasyMessage
         /// <summary>
         /// 消息模块优先级。
         /// </summary>
-        protected internal override Int32 Priority => 5;
+        public override EasyModulePriority Priority => EasyModulePriority.EasyMessageModule;
 
         /// <summary>
         /// 初始化消息模块的新实例。
@@ -48,7 +48,7 @@ namespace EasyFramework.EasyMessage
         /// <summary>
         /// 消息模块关闭。
         /// </summary>
-        protected internal override Void EasyModuleShutdown()
+        protected internal override void EasyModuleShutdown()
         {
             m_MessageCache.Clear();
             m_MessageCache1.Clear();

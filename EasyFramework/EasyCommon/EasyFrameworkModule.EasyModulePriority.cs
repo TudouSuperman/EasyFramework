@@ -10,19 +10,15 @@ using System;
 namespace EasyFramework.EasyCommon
 {
     /// <summary>
-    /// Easy Framework 模块轮询。
+    /// Easy Framework 模块优先级。
     /// </summary>
-    internal interface IEasyModuleUpdate
+    internal enum EasyModulePriority : Byte
     {
-        /// <summary>
-        /// Easy Framework 模块轮询优先级。
-        /// </summary>
-        EasyModulePriority Priority { get; }
-
-        /// <summary>
-        /// Easy Framework 模块轮询。
-        /// </summary>
-        /// <param name="logicTime">逻辑时间。</param>
-        void EasyModuleUpdate(Single logicTime);
+        Unknown = 0,
+        EasyEventModule,
+        EasyMessageModule,
+        EasyProcedureModule,
+        EasyReferenceModule,
+        EasyStateMachineModule,
     }
 }

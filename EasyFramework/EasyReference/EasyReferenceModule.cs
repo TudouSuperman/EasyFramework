@@ -21,7 +21,7 @@ namespace EasyFramework.EasyReference
         /// <summary>
         /// 引用模块优先级。
         /// </summary>
-        protected internal override Int32 Priority => 2;
+        public override EasyModulePriority Priority => EasyModulePriority.EasyReferenceModule;
 
         /// <summary>
         /// 初始化引用模块的新实例。
@@ -34,7 +34,7 @@ namespace EasyFramework.EasyReference
         /// <summary>
         /// 引用模块关闭。
         /// </summary>
-        protected internal override Void EasyModuleShutdown()
+        protected internal override void EasyModuleShutdown()
         {
             foreach (KeyValuePair<Type, EasyReferenceCache> itemReferenceCache in m_ReferenceCaches)
             {

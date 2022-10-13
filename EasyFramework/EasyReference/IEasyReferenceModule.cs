@@ -60,34 +60,34 @@ namespace EasyFramework.EasyReference
         /// 释放指定引用。
         /// </summary>
         /// <param name="reference">引用。</param>
-        Void ReleaseReference(IEasyReference reference);
+        void ReleaseReference(IEasyReference reference);
 
         /// <summary>
         /// 创建并缓存多个指定类型的引用。
         /// </summary>
         /// <typeparam name="TEasyReference">引用类型。</typeparam>
         /// <param name="count">数量。</param>
-        Void AddReference<TEasyReference>(Int32 count) where TEasyReference : IEasyReference;
+        void AddReference<TEasyReference>(Int32 count) where TEasyReference : IEasyReference;
 
         /// <summary>
         /// 创建并缓存多个指定类型的引用。
         /// </summary>
         /// <param name="referenceType">引用类型。</param>
         /// <param name="count">数量。</param>
-        Void AddReference(Type referenceType, Int32 count);
+        void AddReference(Type referenceType, Int32 count);
 
         /// <summary>
         /// 移除多个指定类型的引用。
         /// </summary>
         /// <typeparam name="TEasyReference">引用类型。</typeparam>
         /// <param name="count">数量。</param>
-        Void RemoveReference<TEasyReference>(Int32 count) where TEasyReference : IEasyReference;
+        void RemoveReference<TEasyReference>(Int32 count) where TEasyReference : IEasyReference;
 
         /// <summary>
         /// 移除多个指定类型的引用。
         /// </summary>
         /// <param name="referenceType">引用类型。</param>
         /// <param name="count">数量。</param>
-        Void RemoveReference(Type referenceType, Int32 count);
+        void RemoveReference(Type referenceType, Int32 count);
     }
 }

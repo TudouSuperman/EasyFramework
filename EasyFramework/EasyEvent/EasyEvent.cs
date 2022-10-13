@@ -52,7 +52,7 @@ namespace EasyFramework.EasyEvent
         /// <summary>
         /// 清理 EasyEvent 引用。
         /// </summary>
-        public Void ClearReference()
+        public void ClearReference()
         {
             Sender = null;
             EventArgs = null;

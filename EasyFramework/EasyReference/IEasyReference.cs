@@ -17,6 +17,6 @@ namespace EasyFramework.EasyReference
         /// <summary>
         /// 清理引用。
         /// </summary>
-        Void ClearReference();
+        void ClearReference();
     }
 }
