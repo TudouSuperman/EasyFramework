@@ -11,7 +11,7 @@ using EasyFramework.EasyStateMachine;
 namespace EasyFramework.EasyProcedure
 {
     /// <summary>
-    /// 流程模块。
+    /// Easy Framework 流程模块。
     /// </summary>
     public interface IEasyProcedureModule
     {

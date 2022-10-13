@@ -13,7 +13,7 @@ using EasyFramework.EasyReference;
 namespace EasyFramework.EasyEvent
 {
     /// <summary>
-    /// 事件模块。
+    /// Easy Framework 事件模块。
     /// </summary>
     internal sealed partial class EasyEventModule : EasyFrameworkModule, IEasyEventModule, IEasyModuleUpdate
     {

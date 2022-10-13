@@ -12,7 +12,7 @@ using EasyFramework.EasyCommon;
 namespace EasyFramework.EasyStateMachine
 {
     /// <summary>
-    /// 状态机模块。
+    /// Easy Framework 状态机模块。
     /// </summary>
     internal sealed partial class EasyStateMachineModule : EasyFrameworkModule, IEasyModuleUpdate, IEasyStateMachineModule
     {

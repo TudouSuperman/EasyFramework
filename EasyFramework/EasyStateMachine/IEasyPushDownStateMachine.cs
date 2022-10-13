@@ -10,7 +10,7 @@ using System;
 namespace EasyFramework.EasyStateMachine
 {
     /// <summary>
-    /// 下推状态机接口。
+    /// Easy Framework 下推状态机接口。
     /// </summary>
     /// <typeparam name="TEasyPushDownStateMachineOwner">下推状态机持有者类型。</typeparam>
     public interface IEasyPushDownStateMachine<TEasyPushDownStateMachineOwner> where TEasyPushDownStateMachineOwner : class

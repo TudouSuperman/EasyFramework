@@ -12,7 +12,7 @@ using ProcedureOwner = EasyFramework.EasyStateMachine.IEasyFiniteStateMachine<Ea
 namespace EasyFramework.EasyProcedure
 {
     /// <summary>
-    /// 流程状态基类。
+    /// Easy Framework 流程状态基类。
     /// </summary>
     public abstract class EasyProcedureState : EasyFiniteStateMachineState<IEasyProcedureModule>
     {

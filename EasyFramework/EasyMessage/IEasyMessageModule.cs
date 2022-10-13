@@ -11,7 +11,7 @@ using EasyFramework.EasyCommon;
 namespace EasyFramework.EasyMessage
 {
     /// <summary>
-    /// 消息模块。
+    /// Easy Framework 消息模块。
     /// </summary>
     public interface IEasyMessageModule
     {

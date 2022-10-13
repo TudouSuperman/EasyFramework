@@ -11,7 +11,7 @@ using EasyFramework.EasyReference;
 namespace EasyFramework.EasyMessage
 {
     /// <summary>
-    /// 消息。
+    /// Easy Framework 消息。
     /// </summary>
     internal sealed class EasyMessage : IEasyReference, IEasyMessage
     {

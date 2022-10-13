@@ -12,7 +12,7 @@ using EasyFramework.EasyCommon;
 namespace EasyFramework.EasyEvent
 {
     /// <summary>
-    /// 事件模块逻辑。
+    /// Easy Framework 事件模块逻辑。
     /// </summary>
     internal sealed partial class EasyEventModule
     {

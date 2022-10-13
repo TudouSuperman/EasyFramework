@@ -8,7 +8,7 @@
 namespace EasyFramework.EasyMessage
 {
     /// <summary>
-    /// 消息接口。
+    /// Easy Framework 消息接口。
     /// </summary>
     internal interface IEasyMessage
     {

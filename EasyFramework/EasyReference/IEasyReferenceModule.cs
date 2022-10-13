@@ -10,7 +10,7 @@ using System;
 namespace EasyFramework.EasyReference
 {
     /// <summary>
-    /// 引用模块接口。
+    /// Easy Framework 引用模块接口。
     /// </summary>
     public interface IEasyReferenceModule
     {

@@ -12,7 +12,7 @@ using EasyFramework.EasyStateMachine;
 namespace EasyFramework.EasyProcedure
 {
     /// <summary>
-    /// 流程模块。
+    /// Easy Framework 流程模块。
     /// </summary>
     internal sealed partial class EasyProcedureModule
     {
@@ -66,7 +66,7 @@ namespace EasyFramework.EasyProcedure
                 throw new EasyFrameworkException("请先初始化流程管理器。");
             }
 
-            m_FiniteStateMachine.StartFiniteStateMachine<EasyProcedureState>();
+            m_FiniteStateMachine.StartFiniteStateMachine<TEasyProcedureState>();
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace EasyFramework.EasyProcedure
                 throw new EasyFrameworkException("请先初始化流程管理器。");
             }
 
-            return m_FiniteStateMachine.HasFiniteStateMachineState<EasyProcedureState>();
+            return m_FiniteStateMachine.HasFiniteStateMachineState<TEasyProcedureState>();
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace EasyFramework.EasyProcedure
                 throw new EasyFrameworkException("请先初始化流程管理器。");
             }
 
-            return m_FiniteStateMachine.GetFiniteStateMachineState<EasyProcedureState>();
+            return m_FiniteStateMachine.GetFiniteStateMachineState<TEasyProcedureState>();
         }
 
         /// <summary>

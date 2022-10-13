@@ -8,7 +8,7 @@
 namespace EasyFramework.EasyReference
 {
     /// <summary>
-    /// 引用接口。
+    /// Easy Framework 引用接口。
     /// </summary>
     public interface IEasyReference
     {

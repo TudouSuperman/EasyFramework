@@ -12,6 +12,9 @@ using EasyFramework.EasyReference;
 
 namespace EasyFramework.EasyStateMachine
 {
+    /// <summary>
+    /// Easy Framework 有限状态机。
+    /// </summary>
     internal sealed partial class EasyFiniteStateMachine<TEasyFiniteStateMachineOwner>
     {
         /// <summary>

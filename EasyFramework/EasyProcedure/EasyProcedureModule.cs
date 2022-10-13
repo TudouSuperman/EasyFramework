@@ -5,14 +5,13 @@
 // E-mail : www.shiqi.com@gmail.com
 //------------------------------------------------------------
 
-using System;
 using EasyFramework.EasyCommon;
 using EasyFramework.EasyStateMachine;
 
 namespace EasyFramework.EasyProcedure
 {
     /// <summary>
-    /// 流程模块。
+    /// Easy Framework 流程模块。
     /// </summary>
     internal sealed partial class EasyProcedureModule : EasyFrameworkModule, IEasyProcedureModule
     {

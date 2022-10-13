@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace EasyFramework.EasyReference
 {
     /// <summary>
-    /// 引用池。
+    /// Easy Framework 引用池。
     /// </summary>
     internal static class EasyReferencePool
     {

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace EasyFramework.EasyStateMachine
 {
     /// <summary>
-    /// 状态机模块接口。
+    /// Easy Framework 状态机模块接口。
     /// </summary>
     public interface IEasyStateMachineModule
     {

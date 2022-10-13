@@ -11,7 +11,7 @@ using EasyFramework.EasyCommon;
 namespace EasyFramework.EasyReference
 {
     /// <summary>
-    /// 引用模块逻辑。
+    /// Easy Framework 引用模块逻辑。
     /// </summary>
     internal sealed partial class EasyReferenceModule
     {

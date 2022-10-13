@@ -12,6 +12,9 @@ using EasyFramework.EasyReference;
 
 namespace EasyFramework.EasyStateMachine
 {
+    /// <summary>
+    /// Easy Framework 下推状态机。
+    /// </summary>
     internal sealed partial class EasyPushDownStateMachine<TEasyPushDownStateMachineOwner>
     {
         /// <summary>

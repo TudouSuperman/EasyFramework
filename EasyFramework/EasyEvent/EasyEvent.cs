@@ -12,7 +12,7 @@ using EasyFramework.EasyReference;
 namespace EasyFramework.EasyEvent
 {
     /// <summary>
-    /// 事件。
+    /// Easy Framework 事件。
     /// </summary>
     internal sealed class EasyEvent : IEasyReference
     {

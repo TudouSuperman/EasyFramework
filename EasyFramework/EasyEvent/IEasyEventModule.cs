@@ -11,7 +11,7 @@ using EasyFramework.EasyCommon;
 namespace EasyFramework.EasyEvent
 {
     /// <summary>
-    /// 事件模块接口。
+    /// Easy Framework 事件模块接口。
     /// </summary>
     public interface IEasyEventModule
     {

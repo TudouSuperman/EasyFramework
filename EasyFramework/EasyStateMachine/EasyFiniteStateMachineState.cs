@@ -10,7 +10,7 @@ using System;
 namespace EasyFramework.EasyStateMachine
 {
     /// <summary>
-    /// 有限状态机状态基类。
+    /// Easy Framework 有限状态机状态基类。
     /// </summary>
     /// <typeparam name="TEasyFiniteStateMachineOwner">有限状态机持有者类型。</typeparam>
     public abstract class EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner> where TEasyFiniteStateMachineOwner : class

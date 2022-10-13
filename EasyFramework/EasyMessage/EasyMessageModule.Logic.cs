@@ -12,7 +12,7 @@ using EasyFramework.EasyReference;
 namespace EasyFramework.EasyMessage
 {
     /// <summary>
-    /// 消息模块。
+    /// Easy Framework 消息模块。
     /// </summary>
     internal sealed partial class EasyMessageModule
     {

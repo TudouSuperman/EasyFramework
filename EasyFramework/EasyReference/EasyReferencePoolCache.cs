@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace EasyFramework.EasyReference
 {
     /// <summary>
-    /// 引用池缓存。
+    /// Easy Framework 引用池缓存。
     /// </summary>
     internal sealed class EasyReferencePoolCache
     {

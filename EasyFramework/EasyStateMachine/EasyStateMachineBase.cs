@@ -10,7 +10,7 @@ using System;
 namespace EasyFramework.EasyStateMachine
 {
     /// <summary>
-    /// 状态机基类。
+    /// Easy Framework 状态机基类。
     /// </summary>
     internal abstract class EasyStateMachineBase
     {

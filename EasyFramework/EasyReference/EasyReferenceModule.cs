@@ -12,7 +12,7 @@ using EasyFramework.EasyCommon;
 namespace EasyFramework.EasyReference
 {
     /// <summary>
-    /// 引用模块。
+    /// Easy Framework 引用模块。
     /// </summary>
     internal sealed partial class EasyReferenceModule : EasyFrameworkModule, IEasyReferenceModule
     {
