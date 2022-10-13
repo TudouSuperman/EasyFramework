@@ -23,7 +23,7 @@ namespace EasyFramework.EasyCommon
         /// Easy Framework 框架模块轮询。
         /// </summary>
         /// <param name="logicTime">逻辑时间。</param>
-        public static void EasyFrameworkModuleUpdate(Single logicTime)
+        public static void EasyFrameworkUpdate(Single logicTime)
         {
             if (EasyFrameworkUpdateModules.Count <= 0)
             {
@@ -39,7 +39,7 @@ namespace EasyFramework.EasyCommon
         /// <summary>
         /// Easy Framework 框架模块关闭。
         /// </summary>
-        public static void EasyFrameworkModuleShutdown()
+        public static void EasyFrameworkShutdown()
         {
             EasyFrameworkUpdateModules.Clear();
             for (LinkedListNode<EasyFrameworkModule> current = EasyFrameworkModules.Last; current != null; current = current.Previous)
@@ -54,12 +54,12 @@ namespace EasyFramework.EasyCommon
         /// <summary>
         /// 获取 Easy Framework 框架模块。
         /// </summary>
-        /// <typeparam name="T">要获取的框架模块类型。</typeparam>
+        /// <typeparam name="TEasyModule">要获取的框架模块类型。</typeparam>
         /// <returns>要获取的框架模块。</returns>
         /// <remarks>如果要获取的框架模块不存在，则自动创建该框架模块。</remarks>
-        public static T GetEasyFrameworkModule<T>() where T : class
+        public static TEasyModule GetEasyFrameworkModule<TEasyModule>() where TEasyModule : class
         {
-            Type interfaceType = typeof(T);
+            Type interfaceType = typeof(TEasyModule);
 
             if (!interfaceType.IsInterface)
             {
@@ -78,7 +78,7 @@ namespace EasyFramework.EasyCommon
                 throw new EasyFrameworkException($"框架内找不到此模块类型 '{moduleName}' 。");
             }
 
-            T module = GetEasyFrameworkModule(moduleType) as T;
+            TEasyModule module = GetEasyFrameworkModule(moduleType) as TEasyModule;
             if (typeof(IEasyModuleUpdate).IsAssignableFrom(module?.GetType()))
             {
                 LinkedListNode<IEasyModuleUpdate> current = EasyFrameworkUpdateModules.First;

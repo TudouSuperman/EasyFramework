@@ -12,10 +12,6 @@ using EasyFramework.EasyReference;
 
 namespace EasyFramework.EasyStateMachine
 {
-    /// <summary>
-    /// 有限状态机。
-    /// </summary>
-    /// <typeparam name="TEasyFiniteStateMachineOwner">有限状态机持有者类型。</typeparam>
     internal sealed partial class EasyFiniteStateMachine<TEasyFiniteStateMachineOwner>
     {
         /// <summary>
