@@ -16,14 +16,14 @@ namespace EasyFramework.EasyMessage
     /// </summary>
     internal sealed partial class EasyMessageModule : EasyFrameworkModule, IEasyMessageModule
     {
-        private readonly IDictionary<Int32, IEasyMessage> m_MessageCache;
-        private readonly IDictionary<Int32, IEasyMessage> m_MessageCache1;
-        private readonly IDictionary<Int32, IEasyMessage> m_MessageCache2;
-        private readonly IDictionary<Int32, IEasyMessage> m_MessageCache3;
-        private readonly IDictionary<Int32, IEasyMessage> m_MessageCache4;
-        private readonly IDictionary<Int32, IEasyMessage> m_MessageCache5;
-        private readonly IDictionary<Int32, IEasyMessage> m_MessageCache6;
-        private readonly IDictionary<Int32, IEasyMessage> m_MessageCache7;
+        private IDictionary<Int32, IEasyMessage> m_MessageCache;
+        private IDictionary<Int32, IEasyMessage> m_MessageCache1;
+        private IDictionary<Int32, IEasyMessage> m_MessageCache2;
+        private IDictionary<Int32, IEasyMessage> m_MessageCache3;
+        private IDictionary<Int32, IEasyMessage> m_MessageCache4;
+        private IDictionary<Int32, IEasyMessage> m_MessageCache5;
+        private IDictionary<Int32, IEasyMessage> m_MessageCache6;
+        private IDictionary<Int32, IEasyMessage> m_MessageCache7;
 
         /// <summary>
         /// 消息模块优先级。
@@ -35,14 +35,6 @@ namespace EasyFramework.EasyMessage
         /// </summary>
         public EasyMessageModule()
         {
-            m_MessageCache = new Dictionary<int, IEasyMessage>();
-            m_MessageCache1 = new Dictionary<int, IEasyMessage>();
-            m_MessageCache2 = new Dictionary<int, IEasyMessage>();
-            m_MessageCache3 = new Dictionary<int, IEasyMessage>();
-            m_MessageCache4 = new Dictionary<int, IEasyMessage>();
-            m_MessageCache5 = new Dictionary<int, IEasyMessage>();
-            m_MessageCache6 = new Dictionary<int, IEasyMessage>();
-            m_MessageCache7 = new Dictionary<int, IEasyMessage>();
         }
 
         /// <summary>
@@ -50,14 +42,45 @@ namespace EasyFramework.EasyMessage
         /// </summary>
         protected internal override void EasyModuleShutdown()
         {
-            m_MessageCache.Clear();
-            m_MessageCache1.Clear();
-            m_MessageCache2.Clear();
-            m_MessageCache3.Clear();
-            m_MessageCache4.Clear();
-            m_MessageCache5.Clear();
-            m_MessageCache6.Clear();
-            m_MessageCache7.Clear();
+            if (m_MessageCache != null && m_MessageCache.Count > 0)
+            {
+                m_MessageCache.Clear();
+            }
+
+            if (m_MessageCache1 != null && m_MessageCache1.Count > 0)
+            {
+                m_MessageCache1.Clear();
+            }
+
+            if (m_MessageCache2 != null && m_MessageCache2.Count > 0)
+            {
+                m_MessageCache2.Clear();
+            }
+
+            if (m_MessageCache3 != null && m_MessageCache3.Count > 0)
+            {
+                m_MessageCache3.Clear();
+            }
+
+            if (m_MessageCache4 != null && m_MessageCache4.Count > 0)
+            {
+                m_MessageCache4.Clear();
+            }
+
+            if (m_MessageCache5 != null && m_MessageCache5.Count > 0)
+            {
+                m_MessageCache5.Clear();
+            }
+
+            if (m_MessageCache6 != null && m_MessageCache6.Count > 0)
+            {
+                m_MessageCache6.Clear();
+            }
+
+            if (m_MessageCache7 != null && m_MessageCache7.Count > 0)
+            {
+                m_MessageCache7.Clear();
+            }
         }
     }
 }

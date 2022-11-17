@@ -6,6 +6,7 @@
 //------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using EasyFramework.EasyCommon;
 using EasyFramework.EasyReference;
 
@@ -26,6 +27,11 @@ namespace EasyFramework.EasyMessage
             if (message == null)
             {
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
+            }
+
+            if (m_MessageCache == null)
+            {
+                m_MessageCache = new Dictionary<Int32, IEasyMessage>();
             }
 
             if (m_MessageCache.TryGetValue(id, out IEasyMessage easyMessage))
@@ -55,6 +61,11 @@ namespace EasyFramework.EasyMessage
             if (message == null)
             {
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
+            }
+
+            if (m_MessageCache1 == null)
+            {
+                m_MessageCache1 = new Dictionary<Int32, IEasyMessage>();
             }
 
             if (m_MessageCache1.TryGetValue(id, out IEasyMessage easyMessage))
@@ -87,6 +98,11 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
             }
 
+            if (m_MessageCache2 == null)
+            {
+                m_MessageCache2 = new Dictionary<Int32, IEasyMessage>();
+            }
+
             if (m_MessageCache2.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2> messages = easyMessage as EasyMessage<TMessage1, TMessage2>;
@@ -116,6 +132,11 @@ namespace EasyFramework.EasyMessage
             if (message == null)
             {
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
+            }
+
+            if (m_MessageCache3 == null)
+            {
+                m_MessageCache3 = new Dictionary<Int32, IEasyMessage>();
             }
 
             if (m_MessageCache3.TryGetValue(id, out IEasyMessage easyMessage))
@@ -150,6 +171,11 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
             }
 
+            if (m_MessageCache4 == null)
+            {
+                m_MessageCache4 = new Dictionary<Int32, IEasyMessage>();
+            }
+
             if (m_MessageCache4.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4>;
@@ -181,6 +207,11 @@ namespace EasyFramework.EasyMessage
             if (message == null)
             {
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
+            }
+
+            if (m_MessageCache5 == null)
+            {
+                m_MessageCache5 = new Dictionary<Int32, IEasyMessage>();
             }
 
             if (m_MessageCache5.TryGetValue(id, out IEasyMessage easyMessage))
@@ -217,6 +248,11 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
             }
 
+            if (m_MessageCache6 == null)
+            {
+                m_MessageCache6 = new Dictionary<Int32, IEasyMessage>();
+            }
+
             if (m_MessageCache6.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6>;
@@ -250,6 +286,11 @@ namespace EasyFramework.EasyMessage
             if (message == null)
             {
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
+            }
+
+            if (m_MessageCache7 == null)
+            {
+                m_MessageCache7 = new Dictionary<Int32, IEasyMessage>();
             }
 
             if (m_MessageCache7.TryGetValue(id, out IEasyMessage easyMessage))
@@ -292,7 +333,7 @@ namespace EasyFramework.EasyMessage
                 if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
                 {
                     EasyReferencePool.ReleaseReference((EasyMessage) easyMessage);
-                    m_MessageCache6.Remove(id);
+                    m_MessageCache.Remove(id);
                 }
             }
             else
@@ -326,7 +367,7 @@ namespace EasyFramework.EasyMessage
                 if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
                 {
                     EasyReferencePool.ReleaseReference((EasyMessage<TMessage>) easyMessage);
-                    m_MessageCache6.Remove(id);
+                    m_MessageCache1.Remove(id);
                 }
             }
         }
@@ -344,7 +385,7 @@ namespace EasyFramework.EasyMessage
             {
                 throw new EasyFrameworkException("类型为空的要取消订阅的消息信息是无效的");
             }
-            
+
             if (m_MessageCache2.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2> messages = easyMessage as EasyMessage<TMessage1, TMessage2>;
@@ -357,7 +398,7 @@ namespace EasyFramework.EasyMessage
                 if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
                 {
                     EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2>) easyMessage);
-                    m_MessageCache6.Remove(id);
+                    m_MessageCache2.Remove(id);
                 }
             }
         }
@@ -389,7 +430,7 @@ namespace EasyFramework.EasyMessage
                 if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
                 {
                     EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3>) easyMessage);
-                    m_MessageCache6.Remove(id);
+                    m_MessageCache3.Remove(id);
                 }
             }
         }
@@ -422,7 +463,7 @@ namespace EasyFramework.EasyMessage
                 if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
                 {
                     EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4>) easyMessage);
-                    m_MessageCache6.Remove(id);
+                    m_MessageCache4.Remove(id);
                 }
             }
         }
@@ -456,7 +497,7 @@ namespace EasyFramework.EasyMessage
                 if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
                 {
                     EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5>) easyMessage);
-                    m_MessageCache6.Remove(id);
+                    m_MessageCache5.Remove(id);
                 }
             }
         }
@@ -527,7 +568,7 @@ namespace EasyFramework.EasyMessage
                 if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
                 {
                     EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7>) easyMessage);
-                    m_MessageCache6.Remove(id);
+                    m_MessageCache7.Remove(id);
                 }
             }
         }

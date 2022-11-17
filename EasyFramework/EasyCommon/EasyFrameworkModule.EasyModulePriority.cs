@@ -20,5 +20,6 @@ namespace EasyFramework.EasyCommon
         EasyProcedureModule,
         EasyStateMachineModule,
         EasyReferenceModule,
+        EasyDialogModule
     }
 }
