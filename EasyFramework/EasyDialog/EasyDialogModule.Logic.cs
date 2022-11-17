@@ -49,6 +49,50 @@ namespace EasyFramework.EasyDialog
         }
 
         /// <summary>
+        /// 是否存在打开的对话框。
+        /// </summary>
+        /// <param name="dialogId">对话框编号。</param>
+        public Boolean HasOpenDialog(Int32 dialogId)
+        {
+            if (m_OpenDialogs == null || m_OpenDialogs.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach (EasyDialog itemEasyDialog in m_OpenDialogs)
+            {
+                if (((IEasyDialog) itemEasyDialog).DialogId == dialogId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 是否存在打开的对话框。
+        /// </summary>
+        /// <param name="dialogName">对话框名称。</param>
+        public Boolean HasOpenDialog(String dialogName)
+        {
+            if (m_OpenDialogs == null || m_OpenDialogs.Count <= 0)
+            {
+                return false;
+            }
+
+            foreach (EasyDialog itemEasyDialog in m_OpenDialogs)
+            {
+                if (((IEasyDialog) itemEasyDialog).DialogAssetName == dialogName)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 打开对话框。
         /// </summary>
         /// <param name="dialogId">要打开的对话框编号。</param>
@@ -262,11 +306,6 @@ namespace EasyFramework.EasyDialog
         /// <param name="isCloseComplete">是否关闭完成。</param>
         public void CloseDialogs(HashSet<String> dialogNames, Object userData, EasyFrameworkAction<Boolean> isCloseComplete)
         {
-        }
-
-        private IEasyDialog InternalGetDialog(Int32 dialogId)
-        {
-            return default;
         }
     }
 }

@@ -37,6 +37,18 @@ namespace EasyFramework.EasyDialog
         event EasyFrameworkEventHandler<EasyFrameworkEventArgs> OpenDialogComplete;
 
         /// <summary>
+        /// 是否存在打开的对话框。
+        /// </summary>
+        /// <param name="dialogId">对话框编号。</param>
+        Boolean HasOpenDialog(Int32 dialogId);
+
+        /// <summary>
+        /// 是否存在打开的对话框。
+        /// </summary>
+        /// <param name="dialogName">对话框名称。</param>
+        Boolean HasOpenDialog(String dialogName);
+
+        /// <summary>
         /// 打开对话框。
         /// </summary>
         /// <param name="dialogId">要打开的对话框编号。</param>
