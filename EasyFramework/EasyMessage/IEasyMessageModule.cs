@@ -1,7 +1,7 @@
 //------------------------------------------------------------
 // Easy Framework ??? ...最垃圾的...Fuck..!
 // Copyright © 2022-2035 Shi Qi. All rights reserved.
-// GitHub : https://github.com/ShiQi2022/EasyFramework
+// GitHub : https://github.com/TudouSuperman/EasyFramework
 // E-mail : www.shiqi.com@gmail.com
 //------------------------------------------------------------
 

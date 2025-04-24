@@ -1,12 +1,11 @@
 //------------------------------------------------------------
 // Easy Framework ??? ...最垃圾的框架...Fuck..!
 // Copyright © 2022-2035 Shi Qi. All rights reserved.
-// GitHub : https://github.com/ShiQi2022/EasyFramework
+// GitHub : https://github.com/TudouSuperman/EasyFramework
 // E-mail : www.shiqi.com@gmail.com
 //------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 using EasyFramework.EasyCommon;
 using EasyFramework.EasyReference;
 
@@ -27,11 +26,6 @@ namespace EasyFramework.EasyMessage
             if (message == null)
             {
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
-            }
-
-            if (m_MessageCache == null)
-            {
-                m_MessageCache = new Dictionary<Int32, IEasyMessage>();
             }
 
             if (m_MessageCache.TryGetValue(id, out IEasyMessage easyMessage))
@@ -63,11 +57,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache1 == null)
-            {
-                m_MessageCache1 = new Dictionary<Int32, IEasyMessage>();
-            }
-
             if (m_MessageCache1.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage> messages = easyMessage as EasyMessage<TMessage>;
@@ -96,11 +85,6 @@ namespace EasyFramework.EasyMessage
             if (message == null)
             {
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
-            }
-
-            if (m_MessageCache2 == null)
-            {
-                m_MessageCache2 = new Dictionary<Int32, IEasyMessage>();
             }
 
             if (m_MessageCache2.TryGetValue(id, out IEasyMessage easyMessage))
@@ -134,11 +118,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache3 == null)
-            {
-                m_MessageCache3 = new Dictionary<Int32, IEasyMessage>();
-            }
-
             if (m_MessageCache3.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3>;
@@ -169,11 +148,6 @@ namespace EasyFramework.EasyMessage
             if (message == null)
             {
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
-            }
-
-            if (m_MessageCache4 == null)
-            {
-                m_MessageCache4 = new Dictionary<Int32, IEasyMessage>();
             }
 
             if (m_MessageCache4.TryGetValue(id, out IEasyMessage easyMessage))
@@ -209,11 +183,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache5 == null)
-            {
-                m_MessageCache5 = new Dictionary<Int32, IEasyMessage>();
-            }
-
             if (m_MessageCache5.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5>;
@@ -246,11 +215,6 @@ namespace EasyFramework.EasyMessage
             if (message == null)
             {
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
-            }
-
-            if (m_MessageCache6 == null)
-            {
-                m_MessageCache6 = new Dictionary<Int32, IEasyMessage>();
             }
 
             if (m_MessageCache6.TryGetValue(id, out IEasyMessage easyMessage))
@@ -288,11 +252,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache7 == null)
-            {
-                m_MessageCache7 = new Dictionary<Int32, IEasyMessage>();
-            }
-
             if (m_MessageCache7.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7>;
@@ -321,11 +280,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要取消订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache == null || m_MessageCache.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage messages = easyMessage as EasyMessage;
@@ -335,9 +289,9 @@ namespace EasyFramework.EasyMessage
                 }
 
                 messages.MessageList -= message;
-                if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
+                if (messages.Check())
                 {
-                    EasyReferencePool.ReleaseReference((EasyMessage) easyMessage);
+                    EasyReferencePool.ReleaseReference((EasyMessage)easyMessage);
                     m_MessageCache.Remove(id);
                 }
             }
@@ -360,11 +314,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要取消订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache1 == null || m_MessageCache1.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache1.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage> messages = easyMessage as EasyMessage<TMessage>;
@@ -374,9 +323,9 @@ namespace EasyFramework.EasyMessage
                 }
 
                 messages.MessageList -= message;
-                if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
+                if (messages.Check())
                 {
-                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage>) easyMessage);
+                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage>)easyMessage);
                     m_MessageCache1.Remove(id);
                 }
             }
@@ -396,11 +345,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要取消订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache2 == null || m_MessageCache2.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache2.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2> messages = easyMessage as EasyMessage<TMessage1, TMessage2>;
@@ -410,9 +354,9 @@ namespace EasyFramework.EasyMessage
                 }
 
                 messages.MessageList -= message;
-                if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
+                if (messages.Check())
                 {
-                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2>) easyMessage);
+                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2>)easyMessage);
                     m_MessageCache2.Remove(id);
                 }
             }
@@ -433,11 +377,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要取消订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache3 == null || m_MessageCache3.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache3.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3>;
@@ -447,9 +386,9 @@ namespace EasyFramework.EasyMessage
                 }
 
                 messages.MessageList -= message;
-                if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
+                if (messages.Check())
                 {
-                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3>) easyMessage);
+                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3>)easyMessage);
                     m_MessageCache3.Remove(id);
                 }
             }
@@ -471,11 +410,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要取消订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache4 == null || m_MessageCache4.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache4.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4>;
@@ -485,9 +419,9 @@ namespace EasyFramework.EasyMessage
                 }
 
                 messages.MessageList -= message;
-                if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
+                if (messages.Check())
                 {
-                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4>) easyMessage);
+                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4>)easyMessage);
                     m_MessageCache4.Remove(id);
                 }
             }
@@ -510,11 +444,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要取消订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache5 == null || m_MessageCache5.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache5.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5>;
@@ -524,9 +453,9 @@ namespace EasyFramework.EasyMessage
                 }
 
                 messages.MessageList -= message;
-                if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
+                if (messages.Check())
                 {
-                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5>) easyMessage);
+                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5>)easyMessage);
                     m_MessageCache5.Remove(id);
                 }
             }
@@ -550,11 +479,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要取消订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache6 == null || m_MessageCache6.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache6.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6>;
@@ -564,9 +488,9 @@ namespace EasyFramework.EasyMessage
                 }
 
                 messages.MessageList -= message;
-                if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
+                if (messages.Check())
                 {
-                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6>) easyMessage);
+                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6>)easyMessage);
                     m_MessageCache6.Remove(id);
                 }
             }
@@ -591,11 +515,6 @@ namespace EasyFramework.EasyMessage
                 throw new EasyFrameworkException("类型为空的要取消订阅的消息信息是无效的");
             }
 
-            if (m_MessageCache7 == null || m_MessageCache7.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache7.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7>;
@@ -605,9 +524,9 @@ namespace EasyFramework.EasyMessage
                 }
 
                 messages.MessageList -= message;
-                if (messages.MessageList == null || messages.MessageList.GetInvocationList().Length <= 0)
+                if (messages.Check())
                 {
-                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7>) easyMessage);
+                    EasyReferencePool.ReleaseReference((EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7>)easyMessage);
                     m_MessageCache7.Remove(id);
                 }
             }
@@ -619,11 +538,6 @@ namespace EasyFramework.EasyMessage
         /// <param name="id">要发送消息的编号。</param>
         public void SendMessage(Int32 id)
         {
-            if (m_MessageCache == null || m_MessageCache.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage messages = easyMessage as EasyMessage;
@@ -632,7 +546,7 @@ namespace EasyFramework.EasyMessage
                     throw new EasyFrameworkException("要发送的消息类型与已订阅的消息类型不匹配");
                 }
 
-                messages.MessageList?.Invoke();
+                messages.Send();
             }
         }
 
@@ -644,11 +558,6 @@ namespace EasyFramework.EasyMessage
         /// <typeparam name="TMessage">要发送的消息信息类型。</typeparam>
         public void SendMessage<TMessage>(Int32 id, TMessage message)
         {
-            if (m_MessageCache1 == null || m_MessageCache1.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache1.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage> messages = easyMessage as EasyMessage<TMessage>;
@@ -657,7 +566,7 @@ namespace EasyFramework.EasyMessage
                     throw new EasyFrameworkException("要发送的消息类型与已订阅的消息类型不匹配");
                 }
 
-                messages.MessageList?.Invoke(message);
+                messages.Send(message);
             }
         }
 
@@ -671,11 +580,6 @@ namespace EasyFramework.EasyMessage
         /// <typeparam name="TMessage2">要发送的消息信息类型 2。</typeparam>
         public void SendMessage<TMessage1, TMessage2>(Int32 id, TMessage1 message1, TMessage2 message2)
         {
-            if (m_MessageCache2 == null || m_MessageCache2.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache2.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2> messages = easyMessage as EasyMessage<TMessage1, TMessage2>;
@@ -684,7 +588,7 @@ namespace EasyFramework.EasyMessage
                     throw new EasyFrameworkException("要发送的消息类型与已订阅的消息类型不匹配");
                 }
 
-                messages.MessageList?.Invoke(message1, message2);
+                messages.Send(message1, message2);
             }
         }
 
@@ -700,11 +604,6 @@ namespace EasyFramework.EasyMessage
         /// <typeparam name="TMessage3">要发送的消息信息类型 3。</typeparam>
         public void SendMessage<TMessage1, TMessage2, TMessage3>(Int32 id, TMessage1 message1, TMessage2 message2, TMessage3 message3)
         {
-            if (m_MessageCache3 == null || m_MessageCache3.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache3.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3>;
@@ -713,7 +612,7 @@ namespace EasyFramework.EasyMessage
                     throw new EasyFrameworkException("要发送的消息类型与已订阅的消息类型不匹配");
                 }
 
-                messages.MessageList?.Invoke(message1, message2, message3);
+                messages.Send(message1, message2, message3);
             }
         }
 
@@ -731,11 +630,6 @@ namespace EasyFramework.EasyMessage
         /// <typeparam name="TMessage4">要发送的消息信息类型 4。</typeparam>
         public void SendMessage<TMessage1, TMessage2, TMessage3, TMessage4>(Int32 id, TMessage1 message1, TMessage2 message2, TMessage3 message3, TMessage4 message4)
         {
-            if (m_MessageCache4 == null || m_MessageCache4.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache4.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4>;
@@ -744,7 +638,7 @@ namespace EasyFramework.EasyMessage
                     throw new EasyFrameworkException("要发送的消息类型与已订阅的消息类型不匹配");
                 }
 
-                messages.MessageList?.Invoke(message1, message2, message3, message4);
+                messages.Send(message1, message2, message3, message4);
             }
         }
 
@@ -764,11 +658,6 @@ namespace EasyFramework.EasyMessage
         /// <typeparam name="TMessage5">要发送的消息信息类型 5。</typeparam>
         public void SendMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5>(Int32 id, TMessage1 message1, TMessage2 message2, TMessage3 message3, TMessage4 message4, TMessage5 message5)
         {
-            if (m_MessageCache5 == null || m_MessageCache5.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache5.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5>;
@@ -777,7 +666,7 @@ namespace EasyFramework.EasyMessage
                     throw new EasyFrameworkException("要发送的消息类型与已订阅的消息类型不匹配");
                 }
 
-                messages.MessageList?.Invoke(message1, message2, message3, message4, message5);
+                messages.Send(message1, message2, message3, message4, message5);
             }
         }
 
@@ -799,11 +688,6 @@ namespace EasyFramework.EasyMessage
         /// <typeparam name="TMessage6">要发送的消息信息类型 6。</typeparam>
         public void SendMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6>(Int32 id, TMessage1 message1, TMessage2 message2, TMessage3 message3, TMessage4 message4, TMessage5 message5, TMessage6 message6)
         {
-            if (m_MessageCache6 == null || m_MessageCache6.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache6.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6>;
@@ -812,7 +696,7 @@ namespace EasyFramework.EasyMessage
                     throw new EasyFrameworkException("要发送的消息类型与已订阅的消息类型不匹配");
                 }
 
-                messages.MessageList?.Invoke(message1, message2, message3, message4, message5, message6);
+                messages.Send(message1, message2, message3, message4, message5, message6);
             }
         }
 
@@ -836,11 +720,6 @@ namespace EasyFramework.EasyMessage
         /// <typeparam name="TMessage7">要发送的消息信息类型 7。</typeparam>
         public void SendMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7>(Int32 id, TMessage1 message1, TMessage2 message2, TMessage3 message3, TMessage4 message4, TMessage5 message5, TMessage6 message6, TMessage7 message7)
         {
-            if (m_MessageCache7 == null || m_MessageCache7.Count <= 0)
-            {
-                return;
-            }
-
             if (m_MessageCache7.TryGetValue(id, out IEasyMessage easyMessage))
             {
                 EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7> messages = easyMessage as EasyMessage<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7>;
@@ -849,7 +728,7 @@ namespace EasyFramework.EasyMessage
                     throw new EasyFrameworkException("要发送的消息类型与已订阅的消息类型不匹配");
                 }
 
-                messages.MessageList?.Invoke(message1, message2, message3, message4, message5, message6, message7);
+                messages.Send(message1, message2, message3, message4, message5, message6, message7);
             }
         }
     }

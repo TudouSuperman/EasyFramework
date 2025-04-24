@@ -1,10 +1,11 @@
 //------------------------------------------------------------
 // Easy Framework ??? ...最垃圾的框架...Fuck..!
 // Copyright © 2022-2035 Shi Qi. All rights reserved.
-// GitHub : https://github.com/ShiQi2022/EasyFramework
+// GitHub : https://github.com/TudouSuperman/EasyFramework
 // E-mail : www.shiqi.com@gmail.com
 //------------------------------------------------------------
 
+using System;
 using EasyFramework.EasyCommon;
 using EasyFramework.EasyReference;
 
@@ -18,7 +19,7 @@ namespace EasyFramework.EasyMessage
         /// <summary>
         /// 消息列表。
         /// </summary>
-        public EasyFrameworkAction MessageList { get; set; }
+        public event EasyFrameworkAction MessageList;
 
         /// <summary>
         /// 初始化消息的新实例。
@@ -40,6 +41,16 @@ namespace EasyFramework.EasyMessage
         }
 
         /// <summary>
+        /// 检查消息。
+        /// </summary>
+        public Boolean Check() => null == MessageList || MessageList.GetInvocationList().Length <= 0;
+
+        /// <summary>
+        /// 发送消息。
+        /// </summary>
+        public void Send() => MessageList?.Invoke();
+
+        /// <summary>
         /// 清理 EasyMessage 引用。
         /// </summary>
         public void ClearReference()
@@ -57,7 +68,7 @@ namespace EasyFramework.EasyMessage
         /// <summary>
         /// 消息列表。
         /// </summary>
-        public EasyFrameworkAction<TMessage> MessageList { get; set; }
+        public event EasyFrameworkAction<TMessage> MessageList;
 
         /// <summary>
         /// 初始化消息的新实例。
@@ -80,6 +91,17 @@ namespace EasyFramework.EasyMessage
         }
 
         /// <summary>
+        /// 检查消息。
+        /// </summary>
+        public Boolean Check() => null == MessageList || MessageList.GetInvocationList().Length <= 0;
+
+        /// <summary>
+        /// 发送消息。
+        /// </summary>
+        /// <param name="message">消息内容。</param>
+        public void Send(TMessage message) => MessageList?.Invoke(message);
+
+        /// <summary>
         /// 清理 EasyMessage 引用。
         /// </summary>
         public void ClearReference()
@@ -98,7 +120,7 @@ namespace EasyFramework.EasyMessage
         /// <summary>
         /// 消息列表。
         /// </summary>
-        public EasyFrameworkAction<TMessage1, TMessage2> MessageList { get; set; }
+        public event EasyFrameworkAction<TMessage1, TMessage2> MessageList;
 
         /// <summary>
         /// 初始化消息的新实例。
@@ -121,6 +143,18 @@ namespace EasyFramework.EasyMessage
         }
 
         /// <summary>
+        /// 检查消息。
+        /// </summary>
+        public Boolean Check() => null == MessageList || MessageList.GetInvocationList().Length <= 0;
+
+        /// <summary>
+        /// 发送消息。
+        /// </summary>
+        /// <param name="message1">消息内容1。</param>
+        /// <param name="message2">消息内容2。</param>
+        public void Send(TMessage1 message1, TMessage2 message2) => MessageList?.Invoke(message1, message2);
+
+        /// <summary>
         /// 清理 EasyMessage 引用。
         /// </summary>
         public void ClearReference()
@@ -140,7 +174,7 @@ namespace EasyFramework.EasyMessage
         /// <summary>
         /// 消息列表。
         /// </summary>
-        public EasyFrameworkAction<TMessage1, TMessage2, TMessage3> MessageList { get; set; }
+        public event EasyFrameworkAction<TMessage1, TMessage2, TMessage3> MessageList;
 
         /// <summary>
         /// 初始化消息的新实例。
@@ -163,6 +197,19 @@ namespace EasyFramework.EasyMessage
         }
 
         /// <summary>
+        /// 检查消息。
+        /// </summary>
+        public Boolean Check() => null == MessageList || MessageList.GetInvocationList().Length <= 0;
+
+        /// <summary>
+        /// 发送消息。
+        /// </summary>
+        /// <param name="message1">消息内容1。</param>
+        /// <param name="message2">消息内容2。</param>
+        /// <param name="message3">消息内容3。</param>
+        public void Send(TMessage1 message1, TMessage2 message2, TMessage3 message3) => MessageList?.Invoke(message1, message2, message3);
+
+        /// <summary>
         /// 清理 EasyMessage 引用。
         /// </summary>
         public void ClearReference()
@@ -183,7 +230,7 @@ namespace EasyFramework.EasyMessage
         /// <summary>
         /// 消息列表。
         /// </summary>
-        public EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4> MessageList { get; set; }
+        public event EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4> MessageList;
 
         /// <summary>
         /// 初始化消息的新实例。
@@ -204,6 +251,20 @@ namespace EasyFramework.EasyMessage
             msg.MessageList = message;
             return msg;
         }
+
+        /// <summary>
+        /// 检查消息。
+        /// </summary>
+        public Boolean Check() => null == MessageList || MessageList.GetInvocationList().Length <= 0;
+
+        /// <summary>
+        /// 发送消息。
+        /// </summary>
+        /// <param name="message1">消息内容1。</param>
+        /// <param name="message2">消息内容2。</param>
+        /// <param name="message3">消息内容3。</param>
+        /// <param name="message4">消息内容4。</param>
+        public void Send(TMessage1 message1, TMessage2 message2, TMessage3 message3, TMessage4 message4) => MessageList?.Invoke(message1, message2, message3, message4);
 
         /// <summary>
         /// 清理 EasyMessage 引用。
@@ -227,7 +288,7 @@ namespace EasyFramework.EasyMessage
         /// <summary>
         /// 消息列表。
         /// </summary>
-        public EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5> MessageList { get; set; }
+        public event EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5> MessageList;
 
         /// <summary>
         /// 初始化消息的新实例。
@@ -248,6 +309,21 @@ namespace EasyFramework.EasyMessage
             msg.MessageList = message;
             return msg;
         }
+
+        /// <summary>
+        /// 检查消息。
+        /// </summary>
+        public Boolean Check() => null == MessageList || MessageList.GetInvocationList().Length <= 0;
+
+        /// <summary>
+        /// 发送消息。
+        /// </summary>
+        /// <param name="message1">消息内容1。</param>
+        /// <param name="message2">消息内容2。</param>
+        /// <param name="message3">消息内容3。</param>
+        /// <param name="message4">消息内容4。</param>
+        /// <param name="message5">消息内容5。</param>
+        public void Send(TMessage1 message1, TMessage2 message2, TMessage3 message3, TMessage4 message4, TMessage5 message5) => MessageList?.Invoke(message1, message2, message3, message4, message5);
 
         /// <summary>
         /// 清理 EasyMessage 引用。
@@ -272,7 +348,7 @@ namespace EasyFramework.EasyMessage
         /// <summary>
         /// 消息列表。
         /// </summary>
-        public EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6> MessageList { get; set; }
+        public event EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6> MessageList;
 
         /// <summary>
         /// 初始化消息的新实例。
@@ -293,6 +369,22 @@ namespace EasyFramework.EasyMessage
             msg.MessageList = message;
             return msg;
         }
+
+        /// <summary>
+        /// 检查消息。
+        /// </summary>
+        public Boolean Check() => null == MessageList || MessageList.GetInvocationList().Length <= 0;
+
+        /// <summary>
+        /// 发送消息。
+        /// </summary>
+        /// <param name="message1">消息内容1。</param>
+        /// <param name="message2">消息内容2。</param>
+        /// <param name="message3">消息内容3。</param>
+        /// <param name="message4">消息内容4。</param>
+        /// <param name="message5">消息内容5。</param>
+        /// <param name="message6">消息内容6。</param>
+        public void Send(TMessage1 message1, TMessage2 message2, TMessage3 message3, TMessage4 message4, TMessage5 message5, TMessage6 message6) => MessageList?.Invoke(message1, message2, message3, message4, message5, message6);
 
         /// <summary>
         /// 清理 EasyMessage 引用。
@@ -318,7 +410,7 @@ namespace EasyFramework.EasyMessage
         /// <summary>
         /// 消息列表。
         /// </summary>
-        public EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7> MessageList { get; set; }
+        public event EasyFrameworkAction<TMessage1, TMessage2, TMessage3, TMessage4, TMessage5, TMessage6, TMessage7> MessageList;
 
         /// <summary>
         /// 初始化消息的新实例。
@@ -339,6 +431,23 @@ namespace EasyFramework.EasyMessage
             msg.MessageList = message;
             return msg;
         }
+
+        /// <summary>
+        /// 检查消息。
+        /// </summary>
+        public Boolean Check() => null == MessageList || MessageList.GetInvocationList().Length <= 0;
+
+        /// <summary>
+        /// 发送消息。
+        /// </summary>
+        /// <param name="message1">消息内容1。</param>
+        /// <param name="message2">消息内容2。</param>
+        /// <param name="message3">消息内容3。</param>
+        /// <param name="message4">消息内容4。</param>
+        /// <param name="message5">消息内容5。</param>
+        /// <param name="message6">消息内容6。</param>
+        /// <param name="message7">消息内容7。</param>
+        public void Send(TMessage1 message1, TMessage2 message2, TMessage3 message3, TMessage4 message4, TMessage5 message5, TMessage6 message6, TMessage7 message7) => MessageList?.Invoke(message1, message2, message3, message4, message5, message6, message7);
 
         /// <summary>
         /// 清理 EasyMessage 引用。
