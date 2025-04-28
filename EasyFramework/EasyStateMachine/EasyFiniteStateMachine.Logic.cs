@@ -40,7 +40,7 @@ namespace EasyFramework.EasyStateMachine
         /// <summary>
         /// 获取状态机中状态的数量。
         /// </summary>
-        public Int32 StateMachineStateCount => m_FiniteStateMachineStates.Count;
+        public Int32 StateMachineStateCount => m_FiniteStateMachineStateDic.Count;
 
         /// <summary>
         /// 获取状态机是否正在运行。
@@ -80,7 +80,7 @@ namespace EasyFramework.EasyStateMachine
                     throw new EasyFrameworkException("类型为空的有限状态机状态是无效的。");
                 }
 
-                tempFiniteStateMachine.m_FiniteStateMachineStates.Add(finiteStateMachineStateItem.GetType(), finiteStateMachineStateItem);
+                tempFiniteStateMachine.m_FiniteStateMachineStateDic.Add(finiteStateMachineStateItem.GetType(), finiteStateMachineStateItem);
             }
 
             return tempFiniteStateMachine;
@@ -109,7 +109,7 @@ namespace EasyFramework.EasyStateMachine
         /// <returns>是否存在有限状态机状态。</returns>
         public Boolean HasFiniteStateMachineState<TFiniteStateMachineOwnerState>() where TFiniteStateMachineOwnerState : EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>
         {
-            return m_FiniteStateMachineStates.ContainsKey(typeof(TFiniteStateMachineOwnerState));
+            return m_FiniteStateMachineStateDic.ContainsKey(typeof(TFiniteStateMachineOwnerState));
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace EasyFramework.EasyStateMachine
         /// <returns>获取到的有限状态机状态。</returns>
         public TFiniteStateMachineOwnerState GetFiniteStateMachineState<TFiniteStateMachineOwnerState>() where TFiniteStateMachineOwnerState : EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>
         {
-            if (m_FiniteStateMachineStates.TryGetValue(typeof(TFiniteStateMachineOwnerState), out EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner> finiteStateMachineOwnerState))
+            if (m_FiniteStateMachineStateDic.TryGetValue(typeof(TFiniteStateMachineOwnerState), out EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner> finiteStateMachineOwnerState))
             {
                 return (TFiniteStateMachineOwnerState) finiteStateMachineOwnerState;
             }
@@ -134,8 +134,8 @@ namespace EasyFramework.EasyStateMachine
         public EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>[] GetFiniteStateMachineStates()
         {
             int pointer = 0;
-            EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>[] tempStates = new EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>[m_FiniteStateMachineStates.Count];
-            foreach (KeyValuePair<Type, EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>> stateItem in m_FiniteStateMachineStates)
+            EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>[] tempStates = new EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>[m_FiniteStateMachineStateDic.Count];
+            foreach (KeyValuePair<Type, EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>> stateItem in m_FiniteStateMachineStateDic)
             {
                 tempStates[pointer++] = stateItem.Value;
             }

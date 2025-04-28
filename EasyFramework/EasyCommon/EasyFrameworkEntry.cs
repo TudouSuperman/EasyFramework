@@ -16,8 +16,8 @@ namespace EasyFramework.EasyCommon
     /// </summary>
     public static class EasyFrameworkEntry
     {
-        private static readonly LinkedList<EasyFrameworkModule> EasyFrameworkModules = new LinkedList<EasyFrameworkModule>();
-        private static readonly LinkedList<IEasyModuleUpdate> EasyFrameworkUpdateModules = new LinkedList<IEasyModuleUpdate>();
+        private static readonly LinkedList<EasyFrameworkModule> s_ModuleLinked = new LinkedList<EasyFrameworkModule>();
+        private static readonly LinkedList<IEasyModuleUpdate> s_UpdateModuleLinked = new LinkedList<IEasyModuleUpdate>();
 
         /// <summary>
         /// Easy Framework 框架模块轮询。
@@ -25,12 +25,12 @@ namespace EasyFramework.EasyCommon
         /// <param name="logicTime">逻辑时间。</param>
         public static void EasyFrameworkUpdate(Single logicTime)
         {
-            if (EasyFrameworkUpdateModules.Count <= 0)
+            if (s_UpdateModuleLinked.Count <= 0)
             {
                 return;
             }
 
-            foreach (IEasyModuleUpdate module in EasyFrameworkUpdateModules)
+            foreach (IEasyModuleUpdate module in s_UpdateModuleLinked)
             {
                 module.EasyModuleUpdate(logicTime);
             }
@@ -41,13 +41,13 @@ namespace EasyFramework.EasyCommon
         /// </summary>
         public static void EasyFrameworkShutdown()
         {
-            EasyFrameworkUpdateModules.Clear();
-            for (LinkedListNode<EasyFrameworkModule> current = EasyFrameworkModules.Last; current != null; current = current.Previous)
+            s_UpdateModuleLinked.Clear();
+            for (LinkedListNode<EasyFrameworkModule> current = s_ModuleLinked.Last; current != null; current = current.Previous)
             {
                 current.Value.EasyModuleShutdown();
             }
 
-            EasyFrameworkModules.Clear();
+            s_ModuleLinked.Clear();
             EasyReferencePool.ClearReferences();
         }
 
@@ -81,10 +81,10 @@ namespace EasyFramework.EasyCommon
             TEasyModule module = GetEasyFrameworkModule(moduleType) as TEasyModule;
             if (typeof(IEasyModuleUpdate).IsAssignableFrom(module?.GetType()))
             {
-                LinkedListNode<IEasyModuleUpdate> current = EasyFrameworkUpdateModules.First;
+                LinkedListNode<IEasyModuleUpdate> current = s_UpdateModuleLinked.First;
                 while (current != null)
                 {
-                    if (((IEasyModuleUpdate) module)?.Priority > current.Value.Priority)
+                    if (((IEasyModuleUpdate)module)?.Priority > current.Value.Priority)
                     {
                         break;
                     }
@@ -94,11 +94,11 @@ namespace EasyFramework.EasyCommon
 
                 if (current != null)
                 {
-                    EasyFrameworkUpdateModules.AddBefore(current, (IEasyModuleUpdate) module);
+                    s_UpdateModuleLinked.AddBefore(current, (IEasyModuleUpdate)module);
                 }
                 else
                 {
-                    EasyFrameworkUpdateModules.AddLast((IEasyModuleUpdate) module);
+                    s_UpdateModuleLinked.AddLast((IEasyModuleUpdate)module);
                 }
             }
 
@@ -113,7 +113,7 @@ namespace EasyFramework.EasyCommon
         /// <remarks>如果要获取的框架模块不存在，则自动创建该框架模块。</remarks>
         private static EasyFrameworkModule GetEasyFrameworkModule(Type moduleType)
         {
-            foreach (EasyFrameworkModule module in EasyFrameworkModules)
+            foreach (EasyFrameworkModule module in s_ModuleLinked)
             {
                 if (module.GetType() == moduleType)
                 {
@@ -131,13 +131,13 @@ namespace EasyFramework.EasyCommon
         /// <returns>要创建的框架模块。</returns>
         private static EasyFrameworkModule CreateEasyFrameworkModule(Type moduleType)
         {
-            EasyFrameworkModule module = (EasyFrameworkModule) Activator.CreateInstance(moduleType);
+            EasyFrameworkModule module = (EasyFrameworkModule)Activator.CreateInstance(moduleType);
             if (module == null)
             {
                 throw new EasyFrameworkException($"无法创建此模块 '{moduleType.FullName}' 。");
             }
 
-            LinkedListNode<EasyFrameworkModule> current = EasyFrameworkModules.First;
+            LinkedListNode<EasyFrameworkModule> current = s_ModuleLinked.First;
             while (current != null)
             {
                 if (module.Priority > current.Value.Priority)
@@ -150,11 +150,11 @@ namespace EasyFramework.EasyCommon
 
             if (current != null)
             {
-                EasyFrameworkModules.AddBefore(current, module);
+                s_ModuleLinked.AddBefore(current, module);
             }
             else
             {
-                EasyFrameworkModules.AddLast(module);
+                s_ModuleLinked.AddLast(module);
             }
 
             return module;

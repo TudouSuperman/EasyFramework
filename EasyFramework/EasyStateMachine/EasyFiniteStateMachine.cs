@@ -19,7 +19,7 @@ namespace EasyFramework.EasyStateMachine
     {
         private TEasyFiniteStateMachineOwner m_FiniteStateMachineOwner;
         private EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner> m_FiniteStateMachineCurrentState;
-        private readonly IDictionary<Type, EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>> m_FiniteStateMachineStates;
+        private readonly IDictionary<Type, EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>> m_FiniteStateMachineStateDic;
         private bool m_IsCleared;
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace EasyFramework.EasyStateMachine
         {
             m_FiniteStateMachineOwner = null;
             m_FiniteStateMachineCurrentState = null;
-            m_FiniteStateMachineStates = new Dictionary<Type, EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>>();
+            m_FiniteStateMachineStateDic = new Dictionary<Type, EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>>();
             m_IsCleared = true;
         }
 
@@ -65,14 +65,14 @@ namespace EasyFramework.EasyStateMachine
                 m_FiniteStateMachineCurrentState.OnLeaveState(this);
             }
 
-            foreach (KeyValuePair<Type, EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>> finiteStateMachineStateItem in m_FiniteStateMachineStates)
+            foreach (KeyValuePair<Type, EasyFiniteStateMachineState<TEasyFiniteStateMachineOwner>> finiteStateMachineStateItem in m_FiniteStateMachineStateDic)
             {
                 finiteStateMachineStateItem.Value.OnLeaveState(this);
             }
 
             m_FiniteStateMachineOwner = null;
             m_FiniteStateMachineCurrentState = null;
-            m_FiniteStateMachineStates.Clear();
+            m_FiniteStateMachineStateDic.Clear();
             m_IsCleared = true;
         }
     }

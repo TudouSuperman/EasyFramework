@@ -19,7 +19,7 @@ namespace EasyFramework.EasyStateMachine
     {
         private TEasyPushDownStateMachineOwner m_PushDownStateMachineOwner;
         private EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner> m_PushDownStateMachineCurrentState;
-        private readonly IDictionary<Type, EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>> m_PushDownStateMachineStates;
+        private readonly IDictionary<Type, EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>> m_PushDownStateMachineStateDic;
         private readonly Stack<EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>> m_PushDownStateMachineStack;
         private Boolean m_IsCleared;
 
@@ -30,7 +30,7 @@ namespace EasyFramework.EasyStateMachine
         {
             m_PushDownStateMachineOwner = null;
             m_PushDownStateMachineCurrentState = null;
-            m_PushDownStateMachineStates = new Dictionary<Type, EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>>();
+            m_PushDownStateMachineStateDic = new Dictionary<Type, EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>>();
             m_PushDownStateMachineStack = new Stack<EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>>();
             m_IsCleared = true;
         }
@@ -69,14 +69,14 @@ namespace EasyFramework.EasyStateMachine
                 m_PushDownStateMachineCurrentState.OnLeaveState(this);
             }
 
-            foreach (KeyValuePair<Type, EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>> pushDownStateMachineStateItem in m_PushDownStateMachineStates)
+            foreach (KeyValuePair<Type, EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>> pushDownStateMachineStateItem in m_PushDownStateMachineStateDic)
             {
                 pushDownStateMachineStateItem.Value.OnLeaveState(this);
             }
 
             m_PushDownStateMachineOwner = null;
             m_PushDownStateMachineCurrentState = null;
-            m_PushDownStateMachineStates.Clear();
+            m_PushDownStateMachineStateDic.Clear();
             m_IsCleared = true;
         }
     }

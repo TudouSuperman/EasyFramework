@@ -16,8 +16,8 @@ namespace EasyFramework.EasyStateMachine
     /// </summary>
     internal sealed partial class EasyStateMachineModule : EasyFrameworkModule, IEasyModuleUpdate, IEasyStateMachineModule
     {
-        private readonly IDictionary<Int32, EasyStateMachineBase> m_FiniteStateMachineModules;
-        private readonly IDictionary<Int32, EasyStateMachineBase> m_PushDownStateMachineModules;
+        private readonly IDictionary<Int32, EasyStateMachineBase> m_FiniteStateMachineModuleDic;
+        private readonly IDictionary<Int32, EasyStateMachineBase> m_PushDownStateMachineModuleDic;
         private readonly IList<EasyStateMachineBase> m_TempStateMachineModules;
 
         /// <summary>
@@ -30,8 +30,8 @@ namespace EasyFramework.EasyStateMachine
         /// </summary>
         public EasyStateMachineModule()
         {
-            m_FiniteStateMachineModules = new Dictionary<int, EasyStateMachineBase>();
-            m_PushDownStateMachineModules = new Dictionary<int, EasyStateMachineBase>();
+            m_FiniteStateMachineModuleDic = new Dictionary<int, EasyStateMachineBase>();
+            m_PushDownStateMachineModuleDic = new Dictionary<int, EasyStateMachineBase>();
             m_TempStateMachineModules = new List<EasyStateMachineBase>();
         }
 
@@ -43,17 +43,17 @@ namespace EasyFramework.EasyStateMachine
         {
             m_TempStateMachineModules.Clear();
 
-            if (m_FiniteStateMachineModules.Count >= 0)
+            if (m_FiniteStateMachineModuleDic.Count >= 0)
             {
-                foreach (KeyValuePair<Int32, EasyStateMachineBase> stateMachineModule in m_FiniteStateMachineModules)
+                foreach (KeyValuePair<Int32, EasyStateMachineBase> stateMachineModule in m_FiniteStateMachineModuleDic)
                 {
                     m_TempStateMachineModules.Add(stateMachineModule.Value);
                 }
             }
 
-            if (m_PushDownStateMachineModules.Count >= 0)
+            if (m_PushDownStateMachineModuleDic.Count >= 0)
             {
-                foreach (KeyValuePair<Int32, EasyStateMachineBase> stateMachineModule in m_PushDownStateMachineModules)
+                foreach (KeyValuePair<Int32, EasyStateMachineBase> stateMachineModule in m_PushDownStateMachineModuleDic)
                 {
                     m_TempStateMachineModules.Add(stateMachineModule.Value);
                 }
@@ -78,18 +78,18 @@ namespace EasyFramework.EasyStateMachine
         /// </summary>
         protected internal override void EasyModuleShutdown()
         {
-            foreach (KeyValuePair<Int32, EasyStateMachineBase> stateMachineModule in m_FiniteStateMachineModules)
+            foreach (KeyValuePair<Int32, EasyStateMachineBase> stateMachineModule in m_FiniteStateMachineModuleDic)
             {
                 stateMachineModule.Value.StateMachineShutdown();
             }
 
-            foreach (KeyValuePair<Int32, EasyStateMachineBase> stateMachineModule in m_PushDownStateMachineModules)
+            foreach (KeyValuePair<Int32, EasyStateMachineBase> stateMachineModule in m_PushDownStateMachineModuleDic)
             {
                 stateMachineModule.Value.StateMachineShutdown();
             }
 
-            m_FiniteStateMachineModules.Clear();
-            m_PushDownStateMachineModules.Clear();
+            m_FiniteStateMachineModuleDic.Clear();
+            m_PushDownStateMachineModuleDic.Clear();
             m_TempStateMachineModules.Clear();
         }
     }

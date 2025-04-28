@@ -15,7 +15,7 @@ namespace EasyFramework.EasyReference
     /// </summary>
     internal static class EasyReferencePool
     {
-        private static readonly IDictionary<Type, EasyReferencePoolCache> References = new Dictionary<Type, EasyReferencePoolCache>();
+        private static readonly IDictionary<Type, EasyReferencePoolCache> s_ReferenceDic = new Dictionary<Type, EasyReferencePoolCache>();
 
         /// <summary>
         /// 检查是否存在指定类型引用。
@@ -44,7 +44,7 @@ namespace EasyFramework.EasyReference
         /// <returns>要获取的引用。</returns>
         public static TEasyReference AcquireReference<TEasyReference>() where TEasyReference : IEasyReference
         {
-            return (TEasyReference) AcquireReference(typeof(TEasyReference));
+            return (TEasyReference)AcquireReference(typeof(TEasyReference));
         }
 
         /// <summary>
@@ -71,12 +71,12 @@ namespace EasyFramework.EasyReference
         /// </summary>
         public static void ClearReferences()
         {
-            foreach (KeyValuePair<Type, EasyReferencePoolCache> itemEasyReferencePoolCache in References)
+            foreach (KeyValuePair<Type, EasyReferencePoolCache> itemEasyReferencePoolCache in s_ReferenceDic)
             {
                 itemEasyReferencePoolCache.Value.RemoveReferences();
             }
 
-            References.Clear();
+            s_ReferenceDic.Clear();
         }
 
         /// <summary>
@@ -86,20 +86,20 @@ namespace EasyFramework.EasyReference
         /// <returns>指定类型引用的缓存。</returns>
         private static EasyReferencePoolCache InternalGetReferenceCache(Type referenceType)
         {
-            if (References.TryGetValue(referenceType, out EasyReferencePoolCache referencePoolCache))
+            if (s_ReferenceDic.TryGetValue(referenceType, out EasyReferencePoolCache referencePoolCache))
             {
                 return referencePoolCache;
             }
 
             referencePoolCache = new EasyReferencePoolCache(referenceType);
 
-            if (References.ContainsKey(referenceType))
+            if (s_ReferenceDic.ContainsKey(referenceType))
             {
-                References[referenceType] = referencePoolCache;
+                s_ReferenceDic[referenceType] = referencePoolCache;
             }
             else
             {
-                References.Add(referenceType, referencePoolCache);
+                s_ReferenceDic.Add(referenceType, referencePoolCache);
             }
 
             return referencePoolCache;

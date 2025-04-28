@@ -8,6 +8,7 @@
 using System;
 using System.Linq;
 using EasyFramework.EasyCommon;
+using EasyFramework.EasyReference;
 
 namespace EasyFramework.EasyEvent
 {
@@ -19,7 +20,7 @@ namespace EasyFramework.EasyEvent
         /// <summary>
         /// 获取所有事件数量。
         /// </summary>
-        public Int32 EventsCount => m_EventHandlers.Count;
+        public Int32 EventsCount => m_EventHandlerDic.Count;
 
         /// <summary>
         /// 获取指定订阅事件的数量。
@@ -28,12 +29,7 @@ namespace EasyFramework.EasyEvent
         /// <returns>指定订阅事件的数量。</returns>
         public Int32 EventCount(Int32 id)
         {
-            if (m_EventHandlers.ContainsKey(id))
-            {
-                return m_EventHandlers[id].GetInvocationList().Length;
-            }
-
-            return 0;
+            return m_EventHandlerDic.TryGetValue(id, out EasyFrameworkEventHandler<EasyFrameworkEventArgs> handler) ? handler.GetInvocationList().Length : 0;
         }
 
         /// <summary>
@@ -49,12 +45,7 @@ namespace EasyFramework.EasyEvent
                 throw new EasyFrameworkException("类型为空的要检查的事件处理函数是无效的");
             }
 
-            if (m_EventHandlers.TryGetValue(id, out EasyFrameworkEventHandler<EasyFrameworkEventArgs> eventHandlers))
-            {
-                return eventHandlers.GetInvocationList().Contains(eventHandler);
-            }
-
-            return false;
+            return m_EventHandlerDic.TryGetValue(id, out EasyFrameworkEventHandler<EasyFrameworkEventArgs> handler) && handler.GetInvocationList().Contains(eventHandler);
         }
 
         /// <summary>
@@ -69,13 +60,13 @@ namespace EasyFramework.EasyEvent
                 throw new EasyFrameworkException("类型为空的要检查的事件处理函数是无效的");
             }
 
-            if (m_EventHandlers.ContainsKey(id))
+            if (m_EventHandlerDic.ContainsKey(id))
             {
-                m_EventHandlers[id] += eventHandler;
+                m_EventHandlerDic[id] += eventHandler;
             }
             else
             {
-                m_EventHandlers.Add(id, eventHandler);
+                m_EventHandlerDic.Add(id, eventHandler);
             }
         }
 
@@ -91,13 +82,13 @@ namespace EasyFramework.EasyEvent
                 throw new EasyFrameworkException("类型为空的要检查的事件处理函数是无效的");
             }
 
-            if (m_EventHandlers.ContainsKey(id))
+            if (m_EventHandlerDic.ContainsKey(id))
             {
-                m_EventHandlers[id] -= eventHandler;
+                m_EventHandlerDic[id] -= eventHandler;
             }
             else
             {
-                m_EventHandlers.Remove(id);
+                m_EventHandlerDic.Remove(id);
             }
         }
 
@@ -113,10 +104,10 @@ namespace EasyFramework.EasyEvent
                 throw new EasyFrameworkException("类型为空的事件参数是无效的");
             }
 
-            lock (m_EasyEventHandlers)
+            lock (m_EventQueue)
             {
                 EasyEvent e = EasyEvent.Create(sender, eventArgs);
-                m_EasyEventHandlers.Enqueue(e);
+                m_EventQueue.Enqueue(e);
             }
         }
 
@@ -142,10 +133,12 @@ namespace EasyFramework.EasyEvent
         /// <param name="eventArgs">框架事件参数。</param>
         private void InternalHandleEvent(Object sender, EasyFrameworkEventArgs eventArgs)
         {
-            if (m_EventHandlers.TryGetValue(eventArgs.EventArgsId, out EasyFrameworkEventHandler<EasyFrameworkEventArgs> e))
+            if (m_EventHandlerDic.TryGetValue(eventArgs.EventArgsId, out EasyFrameworkEventHandler<EasyFrameworkEventArgs> e))
             {
                 e?.Invoke(sender, eventArgs);
             }
+
+            EasyReferencePool.ReleaseReference(eventArgs);
         }
     }
 }

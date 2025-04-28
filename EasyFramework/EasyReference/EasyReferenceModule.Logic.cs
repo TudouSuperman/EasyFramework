@@ -133,20 +133,20 @@ namespace EasyFramework.EasyReference
         {
             InternalCheckReferenceType(referenceType);
 
-            if (m_ReferenceCaches.TryGetValue(referenceType, out EasyReferenceCache referenceCache))
+            if (m_ReferenceCacheDic.TryGetValue(referenceType, out EasyReferenceCache referenceCache))
             {
                 return referenceCache;
             }
 
             referenceCache = new EasyReferenceCache(referenceType);
 
-            if (m_ReferenceCaches.ContainsKey(referenceType))
+            if (m_ReferenceCacheDic.ContainsKey(referenceType))
             {
-                m_ReferenceCaches[referenceType] = referenceCache;
+                m_ReferenceCacheDic[referenceType] = referenceCache;
             }
             else
             {
-                m_ReferenceCaches.Add(referenceType, referenceCache);
+                m_ReferenceCacheDic.Add(referenceType, referenceCache);
             }
 
             return referenceCache;

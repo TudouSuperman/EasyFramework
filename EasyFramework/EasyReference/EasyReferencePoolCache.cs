@@ -16,7 +16,7 @@ namespace EasyFramework.EasyReference
     internal sealed class EasyReferencePoolCache
     {
         private readonly Type m_ReferenceType;
-        private readonly Queue<IEasyReference> m_References;
+        private readonly Queue<IEasyReference> m_ReferenceQueue;
 
         /// <summary>
         /// 初始化引用池缓存的新实例。
@@ -25,7 +25,7 @@ namespace EasyFramework.EasyReference
         public EasyReferencePoolCache(Type referenceType)
         {
             m_ReferenceType = referenceType;
-            m_References = new Queue<IEasyReference>();
+            m_ReferenceQueue = new Queue<IEasyReference>();
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace EasyFramework.EasyReference
         /// <returns>是否存在引用。</returns>
         public Boolean CheckReference()
         {
-            return m_References != null && m_References.Count > 0;
+            return m_ReferenceQueue != null && m_ReferenceQueue.Count > 0;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace EasyFramework.EasyReference
 
             if (CheckReference())
             {
-                reference = m_References.Dequeue();
+                reference = m_ReferenceQueue.Dequeue();
             }
             else
             {
@@ -64,7 +64,7 @@ namespace EasyFramework.EasyReference
         public void ReleaseReference(IEasyReference reference)
         {
             reference.ClearReference();
-            m_References.Enqueue(reference);
+            m_ReferenceQueue.Enqueue(reference);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace EasyFramework.EasyReference
         /// </summary>
         public void RemoveReferences()
         {
-            m_References.Clear();
+            m_ReferenceQueue.Clear();
         }
     }
 }

@@ -19,12 +19,12 @@ namespace EasyFramework.EasyStateMachine
         /// <summary>
         /// 获取所有有限状态机的数量。
         /// </summary>
-        public Int32 FiniteStateMachineCount => m_FiniteStateMachineModules.Count;
+        public Int32 FiniteStateMachineCount => m_FiniteStateMachineModuleDic.Count;
 
         /// <summary>
         /// 获取所有下推状态机的数量。
         /// </summary>
-        public Int32 PushDownStateMachineCount => m_PushDownStateMachineModules.Count;
+        public Int32 PushDownStateMachineCount => m_PushDownStateMachineModuleDic.Count;
 
         /// <summary>
         /// 检查是否存在有限状态机。
@@ -33,7 +33,7 @@ namespace EasyFramework.EasyStateMachine
         /// <returns>是否存在有限状态机。</returns>
         public Boolean HasFiniteStateMachine<TEasyFiniteStateMachineOwner>() where TEasyFiniteStateMachineOwner : class
         {
-            return m_FiniteStateMachineModules.ContainsKey(typeof(TEasyFiniteStateMachineOwner).GetHashCode());
+            return m_FiniteStateMachineModuleDic.ContainsKey(typeof(TEasyFiniteStateMachineOwner).GetHashCode());
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace EasyFramework.EasyStateMachine
         /// <returns>是否存在下推状态机。</returns>
         public Boolean HasPushDownStateMachine<TEasyPushDownStateMachineOwner>() where TEasyPushDownStateMachineOwner : class
         {
-            return m_PushDownStateMachineModules.ContainsKey(typeof(TEasyPushDownStateMachineOwner).GetHashCode());
+            return m_PushDownStateMachineModuleDic.ContainsKey(typeof(TEasyPushDownStateMachineOwner).GetHashCode());
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace EasyFramework.EasyStateMachine
         /// <returns>获取到的有限状态机。</returns>
         public IEasyFiniteStateMachine<TEasyFiniteStateMachineOwner> GetFiniteStateMachine<TEasyFiniteStateMachineOwner>() where TEasyFiniteStateMachineOwner : class
         {
-            if (m_FiniteStateMachineModules.TryGetValue(typeof(TEasyFiniteStateMachineOwner).GetHashCode(), out EasyStateMachineBase stateMachineModule))
+            if (m_FiniteStateMachineModuleDic.TryGetValue(typeof(TEasyFiniteStateMachineOwner).GetHashCode(), out EasyStateMachineBase stateMachineModule))
             {
                 return (IEasyFiniteStateMachine<TEasyFiniteStateMachineOwner>) stateMachineModule;
             }
@@ -68,7 +68,7 @@ namespace EasyFramework.EasyStateMachine
         /// <returns>获取到的下推状态机。</returns>
         public IEasyPushDownStateMachine<TEasyPushDownStateMachineOwner> GetPushDownStateMachine<TEasyPushDownStateMachineOwner>() where TEasyPushDownStateMachineOwner : class
         {
-            if (m_PushDownStateMachineModules.TryGetValue(typeof(TEasyPushDownStateMachineOwner).GetHashCode(), out EasyStateMachineBase stateMachineModule))
+            if (m_PushDownStateMachineModuleDic.TryGetValue(typeof(TEasyPushDownStateMachineOwner).GetHashCode(), out EasyStateMachineBase stateMachineModule))
             {
                 return (IEasyPushDownStateMachine<TEasyPushDownStateMachineOwner>) stateMachineModule;
             }
@@ -91,7 +91,7 @@ namespace EasyFramework.EasyStateMachine
             }
 
             EasyFiniteStateMachine<TEasyFiniteStateMachineOwner> tempFiniteStateMachine = EasyFiniteStateMachine<TEasyFiniteStateMachineOwner>.CreateFiniteStateMachine(finiteStateMachineOwner, finiteStateMachineStates);
-            m_FiniteStateMachineModules.Add(typeof(TEasyFiniteStateMachineOwner).GetHashCode(), tempFiniteStateMachine);
+            m_FiniteStateMachineModuleDic.Add(typeof(TEasyFiniteStateMachineOwner).GetHashCode(), tempFiniteStateMachine);
             return tempFiniteStateMachine;
         }
 
@@ -110,7 +110,7 @@ namespace EasyFramework.EasyStateMachine
             }
 
             EasyPushDownStateMachine<TEasyPushDownStateMachineOwner> tempPushDownStateMachine = EasyPushDownStateMachine<TEasyPushDownStateMachineOwner>.CreatePushDownStateMachine(pushDownStateMachineOwner, pushDownStateMachineStates);
-            m_PushDownStateMachineModules.Add(typeof(TEasyPushDownStateMachineOwner).GetHashCode(), tempPushDownStateMachine);
+            m_PushDownStateMachineModuleDic.Add(typeof(TEasyPushDownStateMachineOwner).GetHashCode(), tempPushDownStateMachine);
             return tempPushDownStateMachine;
         }
 
@@ -122,10 +122,10 @@ namespace EasyFramework.EasyStateMachine
         public Boolean DestroyFiniteStateMachine<TEasyFiniteStateMachineOwner>() where TEasyFiniteStateMachineOwner : class
         {
             Int32 id = typeof(TEasyFiniteStateMachineOwner).GetHashCode();
-            if (m_FiniteStateMachineModules.TryGetValue(id, out EasyStateMachineBase stateMachineModule))
+            if (m_FiniteStateMachineModuleDic.TryGetValue(id, out EasyStateMachineBase stateMachineModule))
             {
                 stateMachineModule.StateMachineShutdown();
-                return m_FiniteStateMachineModules.Remove(id);
+                return m_FiniteStateMachineModuleDic.Remove(id);
             }
 
             return false;
@@ -139,10 +139,10 @@ namespace EasyFramework.EasyStateMachine
         public Boolean DestroyPushDownStateMachine<TEasyPushDownStateMachineOwner>() where TEasyPushDownStateMachineOwner : class
         {
             Int32 id = typeof(TEasyPushDownStateMachineOwner).GetHashCode();
-            if (m_PushDownStateMachineModules.TryGetValue(id, out EasyStateMachineBase stateMachineModule))
+            if (m_PushDownStateMachineModuleDic.TryGetValue(id, out EasyStateMachineBase stateMachineModule))
             {
                 stateMachineModule.StateMachineShutdown();
-                return m_PushDownStateMachineModules.Remove(id);
+                return m_PushDownStateMachineModuleDic.Remove(id);
             }
 
             return false;

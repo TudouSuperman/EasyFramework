@@ -17,8 +17,8 @@ namespace EasyFramework.EasyEvent
     /// </summary>
     internal sealed partial class EasyEventModule : EasyFrameworkModule, IEasyEventModule, IEasyModuleUpdate
     {
-        private readonly IDictionary<Int32, EasyFrameworkEventHandler<EasyFrameworkEventArgs>> m_EventHandlers;
-        private readonly Queue<EasyEvent> m_EasyEventHandlers;
+        private readonly IDictionary<Int32, EasyFrameworkEventHandler<EasyFrameworkEventArgs>> m_EventHandlerDic;
+        private readonly Queue<EasyEvent> m_EventQueue;
 
         /// <summary>
         /// 事件模块优先级。
@@ -30,8 +30,8 @@ namespace EasyFramework.EasyEvent
         /// </summary>
         public EasyEventModule()
         {
-            m_EventHandlers = new Dictionary<Int32, EasyFrameworkEventHandler<EasyFrameworkEventArgs>>();
-            m_EasyEventHandlers = new Queue<EasyEvent>();
+            m_EventHandlerDic = new Dictionary<Int32, EasyFrameworkEventHandler<EasyFrameworkEventArgs>>();
+            m_EventQueue = new Queue<EasyEvent>();
         }
 
         /// <summary>
@@ -39,10 +39,10 @@ namespace EasyFramework.EasyEvent
         /// </summary>
         protected internal override void EasyModuleShutdown()
         {
-            lock (m_EventHandlers)
+            lock (m_EventHandlerDic)
             {
-                m_EventHandlers.Clear();
-                m_EasyEventHandlers.Clear();
+                m_EventHandlerDic.Clear();
+                m_EventQueue.Clear();
             }
         }
 
@@ -52,21 +52,21 @@ namespace EasyFramework.EasyEvent
         /// <param name="logicTime">逻辑时间。</param>
         public void EasyModuleUpdate(Single logicTime)
         {
-            if (m_EasyEventHandlers == null)
+            if (m_EventQueue == null)
             {
                 return;
             }
 
-            lock (m_EasyEventHandlers)
+            lock (m_EventQueue)
             {
-                if (m_EasyEventHandlers == null || m_EasyEventHandlers.Count <= 0)
+                if (m_EventQueue == null || m_EventQueue.Count <= 0)
                 {
                     return;
                 }
 
-                while (m_EasyEventHandlers.Count > 0)
+                while (m_EventQueue.Count > 0)
                 {
-                    EasyEvent e = m_EasyEventHandlers.Dequeue();
+                    EasyEvent e = m_EventQueue.Dequeue();
                     InternalHandleEvent(e.Sender, e.EventArgs);
                     EasyReferencePool.ReleaseReference(e);
                 }

@@ -16,7 +16,7 @@ namespace EasyFramework.EasyReference
     /// </summary>
     internal sealed partial class EasyReferenceModule : EasyFrameworkModule, IEasyReferenceModule
     {
-        private readonly IDictionary<Type, EasyReferenceCache> m_ReferenceCaches;
+        private readonly IDictionary<Type, EasyReferenceCache> m_ReferenceCacheDic;
 
         /// <summary>
         /// 引用模块优先级。
@@ -28,7 +28,7 @@ namespace EasyFramework.EasyReference
         /// </summary>
         public EasyReferenceModule()
         {
-            m_ReferenceCaches = new Dictionary<Type, EasyReferenceCache>();
+            m_ReferenceCacheDic = new Dictionary<Type, EasyReferenceCache>();
         }
 
         /// <summary>
@@ -36,12 +36,12 @@ namespace EasyFramework.EasyReference
         /// </summary>
         protected internal override void EasyModuleShutdown()
         {
-            foreach (KeyValuePair<Type, EasyReferenceCache> itemReferenceCache in m_ReferenceCaches)
+            foreach (KeyValuePair<Type, EasyReferenceCache> itemReferenceCache in m_ReferenceCacheDic)
             {
                 itemReferenceCache.Value.RemoveReferences();
             }
 
-            m_ReferenceCaches.Clear();
+            m_ReferenceCacheDic.Clear();
         }
     }
 }

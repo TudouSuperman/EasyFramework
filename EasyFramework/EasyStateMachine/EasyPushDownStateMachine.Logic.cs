@@ -40,7 +40,7 @@ namespace EasyFramework.EasyStateMachine
         /// <summary>
         /// 获取状态机中状态的数量。
         /// </summary>
-        public Int32 StateMachineStateCount => m_PushDownStateMachineStates.Count;
+        public Int32 StateMachineStateCount => m_PushDownStateMachineStateDic.Count;
 
         /// <summary>
         /// 获取状态机中栈区状态的数量。
@@ -85,7 +85,7 @@ namespace EasyFramework.EasyStateMachine
                     throw new EasyFrameworkException("类型为空的下推状态机状态是无效的。");
                 }
 
-                tempPushDownStateMachine.m_PushDownStateMachineStates.Add(pushDownStateMachineStateItem.GetType(), pushDownStateMachineStateItem);
+                tempPushDownStateMachine.m_PushDownStateMachineStateDic.Add(pushDownStateMachineStateItem.GetType(), pushDownStateMachineStateItem);
             }
 
             return tempPushDownStateMachine;
@@ -114,7 +114,7 @@ namespace EasyFramework.EasyStateMachine
         /// <returns>是否存在下推状态机状态。</returns>
         public Boolean HasPushDownStateMachineState<TEasyPushDownStateMachineOwnerState>() where TEasyPushDownStateMachineOwnerState : EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>
         {
-            return m_PushDownStateMachineStates.ContainsKey(typeof(TEasyPushDownStateMachineOwnerState));
+            return m_PushDownStateMachineStateDic.ContainsKey(typeof(TEasyPushDownStateMachineOwnerState));
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace EasyFramework.EasyStateMachine
         /// <returns>获取到的下推状态机状态。</returns>
         public TEasyPushDownStateMachineOwnerState GetPushDownStateMachineState<TEasyPushDownStateMachineOwnerState>() where TEasyPushDownStateMachineOwnerState : EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>
         {
-            if (m_PushDownStateMachineStates.TryGetValue(typeof(TEasyPushDownStateMachineOwnerState), out EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner> pushDownStateMachineOwnerState))
+            if (m_PushDownStateMachineStateDic.TryGetValue(typeof(TEasyPushDownStateMachineOwnerState), out EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner> pushDownStateMachineOwnerState))
             {
                 return (TEasyPushDownStateMachineOwnerState) pushDownStateMachineOwnerState;
             }
@@ -139,8 +139,8 @@ namespace EasyFramework.EasyStateMachine
         public EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>[] GetPushDownStateMachineStates()
         {
             Int32 pointer = 0;
-            EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>[] tempStates = new EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>[m_PushDownStateMachineStates.Count];
-            foreach (KeyValuePair<Type, EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>> stateItem in m_PushDownStateMachineStates)
+            EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>[] tempStates = new EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>[m_PushDownStateMachineStateDic.Count];
+            foreach (KeyValuePair<Type, EasyPushDownStateMachineState<TEasyPushDownStateMachineOwner>> stateItem in m_PushDownStateMachineStateDic)
             {
                 tempStates[pointer++] = stateItem.Value;
             }
