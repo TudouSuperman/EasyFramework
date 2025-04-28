@@ -137,8 +137,6 @@ namespace EasyFramework.EasyEvent
             {
                 e?.Invoke(sender, eventArgs);
             }
-
-            EasyReferencePool.ReleaseReference(eventArgs);
         }
     }
 }
